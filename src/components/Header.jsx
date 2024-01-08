@@ -1,10 +1,11 @@
 import React from 'react'
+import Polygon from "../assets/public/Polygon.png"
 
 const Header = () => {
   return (
 
-    <header className="bg-zinc-950 flex-col overflow-hidden relative flex w-full items-stretch max-md:max-w-full">
-    <div className="relative bg-zinc-950 bg-opacity-0 flex w-full flex-col justify-center items-center px-16 py-8 border-b-[0.5px] border-b-zinc-300 border-b-opacity-50 border-solid max-md:max-w-full max-md:px-5">
+    <header className=" flex-col overflow-hidden relative flex w-full items-stretch max-md:max-w-full">
+    <div className="relative  bg-opacity-0 flex w-full flex-col justify-center items-center px-16 py-8 border-b-[0.5px] border-b-zinc-300 border-b-opacity-50 border-solid max-md:max-w-full max-md:px-5">
     <div className="flex w-full max-w-[1141px] items-start justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
       {/* <img
         loading="lazy"
@@ -17,7 +18,7 @@ const Header = () => {
       <div className="self-center flex items-stretch gap-1.5 my-auto">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/49e15e278a847ebf7873481da4a845908f1e123cd3216c2eb9b179937b6423ed?"
+          src={Polygon}
           className="aspect-[0.75] object-contain object-center w-[9px] fill-red-600 overflow-hidden shrink-0 max-w-full"
         />
         <div className="text-white text-base font-semibold grow whitespace-nowrap self-start">
