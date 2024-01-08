@@ -1,85 +1,19 @@
 import React from "react";
+import CarouselElement from "./CarouselElement";
+import CategoryLinks from "./CategoryLinks";
+
 
 const Movies = () => {
   return (
+ <>
+
+
     <div className="flex flex-col items-stretch">
-      <div className="bg-zinc-950 flex w-full flex-col justify-center items-stretch max-md:max-w-full">
-        <div className="flex-col overflow-hidden relative flex min-h-[750px] w-full items-stretch pb-12 max-md:max-w-full">
-          <div className="relative flex w-[776px] max-w-full flex-col ml-36 mt-28 mb-24 self-start items-start max-md:my-10">
-            <div className="text-white text-xs font-bold whitespace-nowrap bg-red-600 aspect-[2.5] justify-center items-stretch px-3.5 py-1.5 rounded-[100px]">
-              TOP
-            </div>
-            <div className="text-white text-6xl font-semibold self-stretch mt-6 max-md:max-w-full max-md:text-4xl">
-              Spider man no way home{" "}
-            </div>
-            <div className="text-white text-sm self-stretch mt-6 max-md:max-w-full">
-              Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id lorem.
-              Consectetur donec cursus massa nunc ullamcorper semper.
-            </div>
-            <div className="text-red-600 text-sm font-medium self-stretch mt-8 max-md:max-w-full">
-              2022 | <span className="text-red-600">16+</span>
-            </div>
-            <div className="flex justify-between gap-2 mt-6 items-start max-md:max-w-full max-md:flex-wrap">
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8bd3c10d46afda91155e4af2e33a04819ebaa99aa5015d2ab0fdc9b6264b0c81?"
-                className="aspect-[1.16] object-contain object-center w-[22px] overflow-hidden shrink-0 max-w-full"
-              />
-              <div className="text-white text-2xl font-semibold">5.8</div>
-              <div className="text-red-600 text-sm font-medium grow whitespace-nowrap mt-1.5">
-                Seans<span className="text-red-600"> 1</span> - Eplscode{" "}
-                <span className="text-red-600">1</span> - Genre{" "}
-                <span className="text-red-600">
-                  comedy, detective, detective{" "}
-                </span>
-              </div>
-            </div>
-            <div className="shadow-lg bg-red-600 flex items-stretch gap-1.5 mt-10 px-7 py-4 rounded-[100px] max-md:px-5">
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba533719b34c1806d9142eebc71585fb703a217af8534199cb1de876f3c3cf44?"
-                className="aspect-[0.91] object-contain object-center w-2.5 fill-white overflow-hidden shrink-0 max-w-full"
-              />
-              <div className="text-white text-sm font-semibold grow whitespace-nowrap self-start">
-                WATCH
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <CarouselElement />
+    <CategoryLinks />
       <div className="bg-zinc-950 flex w-full flex-col py-12 max-md:max-w-full">
         <div className="self-center flex w-full max-w-[1141px] flex-col items-start max-md:max-w-full">
-          <div className="items-start self-stretch flex justify-between gap-5 px-5 max-md:max-w-full max-md:flex-wrap">
-            <div className="text-white text-sm font-medium leading-4 whitespace-nowrap items-stretch bg-red-600 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Action
-            </div>
-            <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Comedy
-            </div>
-            <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Adventure
-            </div>
-            <div className="text-white text-sm font-medium leading-4 whitespace-nowrap items-stretch bg-red-600 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Drama
-            </div>
-            <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Animation
-            </div>
-            <div className="text-white text-sm font-medium leading-4 whitespace-nowrap items-stretch bg-red-600 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Fantasy
-            </div>
-            <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Family
-            </div>
-            <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5">
-              Horror
-            </div>
-            <img
-              loading="lazy"
-              srcSet="..."
-              className="aspect-[1.33] object-contain object-center w-[53px] items-start overflow-hidden self-center z-[1] shrink-0 max-w-full my-auto"
-            />
-          </div>
+          
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/31cf6b70ef49974ae1e28abd84c7f4478cda3e54fa48651019d70d0812b17381?"
@@ -114,7 +48,7 @@ const Movies = () => {
                 </div>
                 <div className="self-stretch flex flex-col items-stretch -mt-40 px-6 max-md:px-5">
                   <div className="flex flex-col items-stretch">
-                    <div className="text-white text-sm leading-4 items-stretch bg-red-600 justify-center px-2 py-1 rounded-md">
+                    <div className="text-white text-sm leading-4 items-stretch bg-orange-500 justify-center px-2 py-1 rounded-md">
                       Fantasy
                     </div>
                     <img
@@ -138,7 +72,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>
                 <img
@@ -160,7 +94,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>{" "}
                 <img
@@ -182,7 +116,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Drama
                 </div>{" "}
                 <img
@@ -204,7 +138,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch rounded bg-red-600 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch rounded bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
                   Action
                 </div>{" "}
                 <img
@@ -233,7 +167,7 @@ const Movies = () => {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a6a48953c73f627c35d5e1f233d592acf0082768659aeffdf89d17bbd0f5f40?"
                       className="aspect-square object-contain object-center w-10 overflow-hidden max-w-full mt-32 max-md:mt-10"
                     />{" "}
-                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-red-600 self-stretch justify-center mt-5 px-2 py-1">
+                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-orange-500 self-stretch justify-center mt-5 px-2 py-1">
                       Family
                     </div>{" "}
                     <img
@@ -374,7 +308,7 @@ const Movies = () => {
                 </div>{" "}
                 <div className="self-stretch flex flex-col items-stretch -mt-40 px-6 max-md:px-5">
                   <div className="flex flex-col items-stretch">
-                    <div className="text-white text-sm leading-4 items-stretch bg-red-600 justify-center px-2 py-1 rounded-md">
+                    <div className="text-white text-sm leading-4 items-stretch bg-orange-500 justify-center px-2 py-1 rounded-md">
                       Fantasy
                     </div>{" "}
                     <img
@@ -398,7 +332,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>{" "}
                 <img
@@ -420,7 +354,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>
                 <img
@@ -442,7 +376,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Drama
                 </div>
                 <img
@@ -464,7 +398,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch rounded bg-red-600 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch rounded bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
                   Action
                 </div>
                 <img
@@ -493,7 +427,7 @@ const Movies = () => {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a6a48953c73f627c35d5e1f233d592acf0082768659aeffdf89d17bbd0f5f40?"
                       className="aspect-square object-contain object-center w-10 overflow-hidden max-w-full mt-32 max-md:mt-10"
                     />
-                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-red-600 self-stretch justify-center mt-5 px-2 py-1">
+                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-orange-500 self-stretch justify-center mt-5 px-2 py-1">
                       Family
                     </div>
                     <img
@@ -634,7 +568,7 @@ const Movies = () => {
                 </div>
                 <div className="self-stretch flex flex-col items-stretch -mt-40 px-6 max-md:px-5">
                   <div className="flex flex-col items-stretch">
-                    <div className="text-white text-sm leading-4 items-stretch bg-red-600 justify-center px-2 py-1 rounded-md">
+                    <div className="text-white text-sm leading-4 items-stretch bg-orange-500 justify-center px-2 py-1 rounded-md">
                       Fantasy
                     </div>
                     <img
@@ -658,7 +592,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>
                 <img
@@ -680,7 +614,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>{" "}
                 <img
@@ -702,7 +636,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Drama
                 </div>{" "}
                 <img
@@ -724,7 +658,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch rounded bg-red-600 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch rounded bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
                   Action
                 </div>{" "}
                 <img
@@ -753,7 +687,7 @@ const Movies = () => {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a6a48953c73f627c35d5e1f233d592acf0082768659aeffdf89d17bbd0f5f40?"
                       className="aspect-square object-contain object-center w-10 overflow-hidden max-w-full mt-32 max-md:mt-10"
                     />{" "}
-                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-red-600 self-stretch justify-center mt-5 px-2 py-1">
+                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-orange-500 self-stretch justify-center mt-5 px-2 py-1">
                       Family
                     </div>{" "}
                     <img
@@ -894,7 +828,7 @@ const Movies = () => {
                 </div>{" "}
                 <div className="self-stretch flex flex-col items-stretch -mt-40 px-6 max-md:px-5">
                   <div className="flex flex-col items-stretch">
-                    <div className="text-white text-sm leading-4 items-stretch bg-red-600 justify-center px-2 py-1 rounded-md">
+                    <div className="text-white text-sm leading-4 items-stretch bg-orange-500 justify-center px-2 py-1 rounded-md">
                       Fantasy
                     </div>{" "}
                     <img
@@ -918,7 +852,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />{" "}
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-48 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>{" "}
                 <img
@@ -940,7 +874,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Fantasy
                 </div>
                 <img
@@ -962,7 +896,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch bg-red-600 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 rounded-md max-md:mt-10">
                   Drama
                 </div>
                 <img
@@ -984,7 +918,7 @@ const Movies = () => {
                 className="absolute h-full w-full object-cover object-center inset-0"
               />
               <div className="relative justify-end flex flex-col pt-12 pb-6 px-6 items-start max-md:px-5">
-                <div className="text-white text-sm leading-4 items-stretch rounded bg-red-600 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
+                <div className="text-white text-sm leading-4 items-stretch rounded bg-orange-500 self-stretch justify-center mt-56 px-2 py-1 max-md:mt-10">
                   Action
                 </div>
                 <img
@@ -1013,7 +947,7 @@ const Movies = () => {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a6a48953c73f627c35d5e1f233d592acf0082768659aeffdf89d17bbd0f5f40?"
                       className="aspect-square object-contain object-center w-10 overflow-hidden max-w-full mt-32 max-md:mt-10"
                     />
-                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-red-600 self-stretch justify-center mt-5 px-2 py-1">
+                    <div className="text-white text-sm leading-4 whitespace-nowrap items-stretch rounded bg-orange-500 self-stretch justify-center mt-5 px-2 py-1">
                       Family
                     </div>
                     <img
@@ -1133,6 +1067,7 @@ const Movies = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

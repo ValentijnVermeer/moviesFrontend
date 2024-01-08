@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -18,10 +19,11 @@ export default {
         'lighter-grey': '#5C6679',
         'light-light-blue': '#DEF2FF',
         'orange-gold': '#DBA11C',
+        'citrus-orange': '#FF822D',
   
       },
     },
   },
   plugins: [],
-}
+};
 

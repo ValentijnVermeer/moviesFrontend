@@ -16,7 +16,7 @@ const Footer = () => {
                       className="aspect-[3.21] object-contain object-center w-[125px] overflow-hidden max-w-full"
                     /> */}
                     <div className="text-amber-500 text-2xl font-bold whitespace-nowrap mb-2">
-                      <span style={{color: "#FF822D"}}>CitrusCinema</span>&#127818;
+                      <span className='text-orange-500'>CitrusCinema</span>&#127818;
                     </div>
                     <div className="text-white text-xs font-medium leading-5 self-stretch max-md:max-w-full text-justify">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit.

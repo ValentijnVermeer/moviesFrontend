@@ -12,7 +12,7 @@ const Header = () => {
         className="aspect-[3.21] object-contain object-center w-[125px] overflow-hidden self-stretch shrink-0 max-w-full"
       /> */}
       <div className="text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap text-left">
-        <span style={{color: "#FF822D"}}>CitrusCinema</span>&#127818; 
+        <span className='text-orange-500'>CitrusCinema</span>&#127818; 
       </div>
       <div className="self-center flex items-stretch gap-1.5 my-auto">
         <img
