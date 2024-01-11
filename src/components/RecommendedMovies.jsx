@@ -65,7 +65,7 @@ const RecommendedMovies = () => {
         /> */}
       </div>
       <div className="text-white text-2xl font-medium leading-8 mt-4">
-        {movie.title}
+        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
       </div>
     </div>
   </div>
