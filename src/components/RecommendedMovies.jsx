@@ -34,7 +34,10 @@ const RecommendedMovies = () => {
 			<div className='flex items-stretch justify-between gap-5 mt-12 px-5 self-start max-md:max-w-full max-md:flex-wrap max-md:mt-10'>
 				{movies !== null && Array.isArray(movies) ? (
 					movies.map((movie) => (
-						<div className='flex grow basis-[0%] flex-col justify-center items-stretch rounded-md'>
+						<div
+							key={movie.id}
+							className='flex grow basis-[0%] flex-col justify-center items-stretch rounded-md'
+						>
 							<div className='flex-col overflow-hidden relative flex aspect-[0.6666666666666666] w-full justify-center items-stretch'>
 								<img
 									src={movie.poster}
