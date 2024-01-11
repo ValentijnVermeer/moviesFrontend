@@ -30,7 +30,7 @@ const Header = () => {
           Movies
         </div>
         <div className="text-gray-200 text-base font-medium">
-          Series
+          Artists
         </div>
       </div>
       <div className="self-center flex items-stretch gap-1.5 my-auto">
