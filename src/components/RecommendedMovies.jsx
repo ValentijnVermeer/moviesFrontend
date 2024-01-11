@@ -9,10 +9,14 @@ const RecommendedMovies = () => {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
-      .then(res => setMovies(res.data))
+      .then(res => {
+        console.log(res.data);
+        setMovies(res.data);
+      })
       .catch(e => console.error(e));
       
   }, []);
+
 
   return (
   <div className="bg-zinc-950 flex w-full flex-col py-12 max-md:max-w-full">
@@ -33,12 +37,12 @@ const RecommendedMovies = () => {
 <div className="flex items-stretch justify-between gap-5 mt-12 px-5 self-start max-md:max-w-full max-md:flex-wrap max-md:mt-10">
         
         
-{movies.map(movie => (
+{movies !== null ? movies.map(movie => (
 
 <div className="flex grow basis-[0%] flex-col justify-center items-stretch rounded-md">
 <div className="flex-col overflow-hidden relative flex aspect-[0.6666666666666666] w-full justify-center items-stretch">
   <img
-    src="https://upload.wikimedia.org/wikipedia/en/5/52/Saltburn_Film_Poster.jpg"
+    src={movie.poster}
     className="absolute h-full w-full object-cover object-center inset-0"
   />
   <div className="relative justify-end flex flex-col pb-6 items-end">
@@ -68,7 +72,7 @@ const RecommendedMovies = () => {
 </div>
 </div>
         
-))};
+)):<p>ada</p>}
 </div>
 </div>
 
