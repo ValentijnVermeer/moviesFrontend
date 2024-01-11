@@ -10,7 +10,7 @@ const RecommendedMovies = () => {
 		axios
 			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
 			.then((res) => {
-				console.log(res.data); // Check the structure of the response data
+				console.log(res.data);
 				setMovies(res.data);
 			})
 			.catch((e) => console.error(e));
