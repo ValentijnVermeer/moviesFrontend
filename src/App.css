@@ -4,6 +4,18 @@
   text-align: center;
 }
 
+.custom-height-val {
+  height: 40rem;
+}
+
+button.group[data-testid="carousel-left-control"],button.group[data-testid="carousel-right-control"]  {
+  display: none;
+}
+
+.react-multiple-carousel__arrow:hover {
+  background-color: rgb(249 115 22);
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -38,4 +50,16 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@media screen and (min-width: 640px) {
+  custom-height-val {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  custom-height-val {
+    height: 30rem;
+  }
 }

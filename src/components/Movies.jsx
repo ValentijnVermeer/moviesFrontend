@@ -4,6 +4,7 @@ import CategoryLinks from "./CategoryLinks";
 import RecommendedMovies from "./RecommendedMovies";
 import PopularMovies from "./PopularMovies";
 import ParentHeaderHero from "./ParentHeaderHero";
+import CenterCarousel from "./CenterCarousel";
 
 
 const Movies = () => {
@@ -16,6 +17,7 @@ const Movies = () => {
     {/* <CarouselElement /> */}
     <CategoryLinks />
     <RecommendedMovies />
+    <CenterCarousel />
     <PopularMovies />
     </div>
     </>
