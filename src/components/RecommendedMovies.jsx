@@ -9,10 +9,14 @@ const RecommendedMovies = () => {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
-      .then(res => setMovies(res.data))
+      .then(res => {
+        console.log(res.data);
+        setMovies(res.data);
+      })
       .catch(e => console.error(e));
       
   }, []);
+
 
   return (
   <div className="bg-zinc-950 flex w-full flex-col py-12 max-md:max-w-full">
@@ -33,7 +37,7 @@ const RecommendedMovies = () => {
 <div className="flex items-stretch justify-between gap-5 mt-12 px-5 self-start max-md:max-w-full max-md:flex-wrap max-md:mt-10">
         
         
-{movies.map(movie => (
+{movies !== null ? movies.map(movie => (
 
 <div className="flex grow basis-[0%] flex-col justify-center items-stretch rounded-md">
 <div className="flex-col overflow-hidden relative flex aspect-[0.6666666666666666] w-full justify-center items-stretch">
@@ -61,14 +65,14 @@ const RecommendedMovies = () => {
         /> */}
       </div>
       <div className="text-white text-2xl font-medium leading-8 mt-4">
-        {movie.title}
+        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
       </div>
     </div>
   </div>
 </div>
 </div>
         
-))};
+)):<p>ada</p>}
 </div>
 </div>
 
