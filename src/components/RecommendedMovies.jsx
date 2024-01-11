@@ -38,7 +38,7 @@ const RecommendedMovies = () => {
 <div className="flex grow basis-[0%] flex-col justify-center items-stretch rounded-md">
 <div className="flex-col overflow-hidden relative flex aspect-[0.6666666666666666] w-full justify-center items-stretch">
   <img
-    src="https://upload.wikimedia.org/wikipedia/en/5/52/Saltburn_Film_Poster.jpg"
+    src={movie.poster}
     className="absolute h-full w-full object-cover object-center inset-0"
   />
   <div className="relative justify-end flex flex-col pb-6 items-end">
