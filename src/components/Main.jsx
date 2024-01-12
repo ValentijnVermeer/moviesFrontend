@@ -4,7 +4,6 @@ import Movies from './Movies';
 import NewMovie from './NewMovie';
 import MovieDetails from './MovieDetails';
 import UpdateMovie from './UpdateMovie';
-import Artists from './Artists';
 
 const Main = () => {
 	return (
@@ -25,10 +24,6 @@ const Main = () => {
 				<Route
 					path='/movies/:id/update'
 					element={<UpdateMovie />}
-				/>
-				<Route
-					path='/artists'
-					element={<Artists />}
 				/>
 			</Routes>
 		</div>

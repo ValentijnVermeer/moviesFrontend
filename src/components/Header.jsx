@@ -17,8 +17,6 @@ const Header = () => {
 				return 'left-[-0.1rem]';
 			case 'Movies':
 				return 'left-[4.25rem]';
-			case 'Artists':
-				return 'left-[11.2rem]';
 			default:
 				return 'left-0';
 		}
@@ -61,15 +59,6 @@ const Header = () => {
 							}}
 						>
 							Add Movies
-						</div>
-						<div
-							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => {
-								setActiveSection('Artists');
-								handleNavClick('/artists');
-							}}
-						>
-							Artists
 						</div>
 					</div>
 

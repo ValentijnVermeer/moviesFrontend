@@ -107,7 +107,7 @@ const CarouselElement = () => {
 										onClick={() => handleWatchClick(movie.id)}
 										className='mt-2 ms-3 bg-orange-500 text-white px-5 py-2 rounded-full'
 									>
-										Watch {movie.title} Trailer
+										See {movie.title} Details
 									</button>
 								</div>
 							</div>
