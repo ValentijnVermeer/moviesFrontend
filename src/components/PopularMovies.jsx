@@ -8,7 +8,7 @@ const PopularMovies = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${import.meta.env.VITE_SERVER_BASE_URL}api/movies`)
+			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
 			.then((res) => {
 				console.log(res.data);
 				setMovies(res.data);
