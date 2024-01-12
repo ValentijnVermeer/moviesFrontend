@@ -1,4 +1,4 @@
-import CategoryLinks from './CategoryLinks';
+import Genres from './Genres';
 import RecommendedMovies from './RecommendedMovies';
 import PopularMovies from './PopularMovies';
 import ParentHeaderHero from './ParentHeaderHero';
@@ -8,7 +8,7 @@ const Movies = () => {
 		<>
 			<div className='flex flex-col items-stretch'>
 				<ParentHeaderHero />
-				<CategoryLinks />
+				<Genres />
 				<RecommendedMovies />
 				<PopularMovies />
 			</div>

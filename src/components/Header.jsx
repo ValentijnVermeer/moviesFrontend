@@ -14,11 +14,11 @@ const Header = () => {
 	const getImagePosition = (activeSection) => {
 		switch (activeSection) {
 			case 'Home':
-				return 'left-[0]';
+				return 'left-[-0.1rem]';
 			case 'Movies':
 				return 'left-[4.25rem]';
 			case 'Artists':
-				return 'left-[9.2rem]';
+				return 'left-[11.2rem]';
 			default:
 				return 'left-0';
 		}
@@ -60,13 +60,13 @@ const Header = () => {
 								handleNavClick('/movies/new');
 							}}
 						>
-							Movies
+							Add Movies
 						</div>
 						<div
 							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
 							onClick={() => {
 								setActiveSection('Artists');
-								handleNavClick('/');
+								handleNavClick('/artists');
 							}}
 						>
 							Artists
