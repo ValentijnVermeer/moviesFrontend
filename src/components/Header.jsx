@@ -32,7 +32,7 @@ const Header = () => {
 		<header className=' overflow-hidden relative flex w-full items-stretch w-full'>
 			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-8 w-full'>
 				<div className='flex w-full items-start justify-between gap-5 px-6'>
-					<div className='flex text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap text-left'>
+					<div className='flex text-xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
 					<img
 							loading='lazy'
 							src={CitrusCinemaLogo}
@@ -114,7 +114,7 @@ const Header = () => {
 								className='relative inline-block text-left'
 							>
 								<div>
-									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white'>
+									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap'>
 										My Profile
 										<ChevronDownIcon
 											className='-mr-1 h-5 w-5 text-white-600'
