@@ -13,6 +13,7 @@ const CarouselElement = () => {
 				const response = await axios.get(
 					`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`
 				);
+				console.log(response);
 				setMovies(response.data);
 			} catch (error) {
 				console.error('Failed to fetch movies:', error);
@@ -55,13 +56,13 @@ const CarouselElement = () => {
 		<div className='w-full'>
 			<button
 				onClick={goToPreviousSlide}
-				className='absolute left-16 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-20 ps-10 ms-1 bg-black bg-opacity-20 rounded'
+				className='absolute left-16 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-20 ps-10 pe-5 ms-1 bg-black bg-opacity-10 rounded text-2xl'
 			>
 				◀︎
 			</button>
 			<button
 				onClick={goToNextSlide}
-				className='absolute right-12 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20 pe-5 me-1 bg-black bg-opacity-20 rounded'
+				className='absolute right-12 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20 pe-5 ps-5 me-1 bg-black bg-opacity-10 rounded text-2xl'
 			>
 				▶︎
 			</button>
