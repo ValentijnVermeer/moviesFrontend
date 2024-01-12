@@ -93,7 +93,7 @@ const Header = () => {
 								className='relative inline-block text-left'
 							>
 								<div>
-									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 font-semibold text-white'>
+									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white'>
 										My Profile
 										<ChevronDownIcon
 											className='-mr-1 h-5 w-5 text-white-600'
@@ -124,6 +124,21 @@ const Header = () => {
 															'block px-4 py-2 text-sm text-white'
 														)}
 													>
+														Account
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href='#'
+														className={classNames(
+															active
+																? 'bg-black-100 text-white-900'
+																: 'text-white-700',
+															'block px-4 py-2 text-sm text-white'
+														)}
+													>
 														Settings
 													</a>
 												)}
@@ -140,21 +155,6 @@ const Header = () => {
 														)}
 													>
 														Support
-													</a>
-												)}
-											</Menu.Item>
-											<Menu.Item>
-												{({ active }) => (
-													<a
-														href='#'
-														className={classNames(
-															active
-																? 'bg-black-100 text-white-900'
-																: 'text-white-700',
-															'block px-4 py-2 text-sm text-white'
-														)}
-													>
-														Account
 													</a>
 												)}
 											</Menu.Item>
@@ -184,12 +184,12 @@ const Header = () => {
 							</Menu>
 						</div>
 
-						<img
+						{/* <img
 							loading='lazy'
 							src='https://cdn.builder.io/api/v1/image/assets/TEMP/ce7152e6ca695955df27a989658851662ba6f21ee1ad352592828771e3901dba?'
 							className='aspect-square object-contain object-center w-5 stroke-[2px] stroke-white overflow-hidden self-stretch shrink-0 max-w-full'
-						/>
-						<img
+						/> */}
+						{/* <img
 							loading='lazy'
 							src='https://cdn.builder.io/api/v1/image/assets/TEMP/d4b44135d9c3b8927247ff63692192d0799d37488ab840f6bfd645aa80533011?'
 							className='aspect-square object-contain object-center w-5 fill-white overflow-hidden self-stretch shrink-0 max-w-full'
@@ -201,7 +201,7 @@ const Header = () => {
 							loading='lazy'
 							src='https://cdn.builder.io/api/v1/image/assets/TEMP/55b7e95f0df5a794796d6c7060bdc36b3b0ad82b7eff88be2897a2b87f120720?'
 							className='aspect-[1.67] object-contain object-center w-2.5 stroke-[1.5px] stroke-white overflow-hidden self-center shrink-0 max-w-full my-auto'
-						/>
+						/> */}
 					</div>
 				</div>
 			</div>
