@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import Polygon from '../assets/public/Polygon.png';
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+
+const classNames = (...classes) => {
+	return classes.filter(Boolean).join(' ');
+};
 
 const Header = () => {
 	const [activeSection, setActiveSection] = useState('Home');
@@ -22,7 +29,7 @@ const Header = () => {
 				<div className='flex w-full items-start justify-between gap-5 px-6'>
 					<div className='text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap text-left'>
 						<span className='text-orange-500'>CitrusCinema</span>
-						<span className='spin text-4xl'>&#127818;</span>
+						<span>&#127818;</span>
 					</div>
 					<div className='self-center flex items-center gap-2 my-auto mx-2 relative'>
 						<img
@@ -53,22 +60,130 @@ const Header = () => {
 						</div>
 					</div>
 
-					<div className='self-center flex items-start justify-between gap-2 my-auto'>
-						<div className='self-center flex items-stretch gap-1.5 my-auto'>
-							<div className='text-gray-200 text-base font-medium grow whitespace-nowrap'>
-								My list
+					<div>
+						<form className='max-w-sm px-4'>
+							<div className='relative'>
+								<svg
+									xmlns='http://www.w3.org/2000/svg'
+									className='absolute top-0 bottom-0 w-6 h-6 my-auto text-white-400 left-3'
+									fill='none'
+									viewBox='0 0 24 24'
+									stroke='currentColor'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth={2}
+										d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+									/>
+								</svg>
+								<input
+									type='text'
+									placeholder='Search'
+									className='w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-transparent focus:bg-black focus:border-orange-600'
+								/>
 							</div>
-							<img
-								loading='lazy'
-								src='https://cdn.builder.io/api/v1/image/assets/TEMP/60db0d062936e8bb27a58a723781d762ea1f013224e239bbc50cda4fe8a16bd7?'
-								className='aspect-[1.71] object-contain object-center w-3 stroke-[1.8px] stroke-white overflow-hidden self-center shrink-0 max-w-full my-auto'
-							/>
+						</form>
+					</div>
+
+					<div className='self-center flex items-start justify-between gap-3 my-auto'>
+						<div className='self-center flex items-stretch gap-1.5 my-auto'>
+							<Menu
+								as='div'
+								className='relative inline-block text-left'
+							>
+								<div>
+									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 font-semibold text-white'>
+										My Profile
+										<ChevronDownIcon
+											className='-mr-1 h-5 w-5 text-white-600'
+											aria-hidden='true'
+										/>
+									</Menu.Button>
+								</div>
+
+								<Transition
+									as={Fragment}
+									enter='transition ease-out duration-100'
+									enterFrom='transform opacity-0 scale-95'
+									enterTo='transform opacity-100 scale-100'
+									leave='transition ease-in duration-75'
+									leaveFrom='transform opacity-100 scale-100'
+									leaveTo='transform opacity-0 scale-95'
+								>
+									<Menu.Items className='fixed right-25 z-10 mt-2 w-56 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+										<div className='py-1'>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href='#'
+														className={classNames(
+															active
+																? 'bg-black-100 text-white-900'
+																: 'text-white-700',
+															'block px-4 py-2 text-sm text-white'
+														)}
+													>
+														Settings
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href='#'
+														className={classNames(
+															active
+																? 'bg-black-100 text-white-900'
+																: 'text-white-700',
+															'block px-4 py-2 text-sm text-white'
+														)}
+													>
+														Support
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href='#'
+														className={classNames(
+															active
+																? 'bg-black-100 text-white-900'
+																: 'text-white-700',
+															'block px-4 py-2 text-sm text-white'
+														)}
+													>
+														Account
+													</a>
+												)}
+											</Menu.Item>
+											<form
+												method='POST'
+												action='#'
+											>
+												<Menu.Item>
+													{({ active }) => (
+														<button
+															type='submit'
+															className={classNames(
+																active
+																	? 'bg-black-100 text-white-900'
+																	: 'text-white-700',
+																'block w-full px-4 py-2 text-left text-sm text-white'
+															)}
+														>
+															Sign out
+														</button>
+													)}
+												</Menu.Item>
+											</form>
+										</div>
+									</Menu.Items>
+								</Transition>
+							</Menu>
 						</div>
-						<img
-							loading='lazy'
-							src='https://cdn.builder.io/api/v1/image/assets/TEMP/0d5139f3c71e756a93a477b71e55b67c7c2b6a61923cac7d580cd1b99e592fba?'
-							className='aspect-square object-contain object-center w-[18px] fill-white overflow-hidden shrink-0 max-w-full self-start'
-						/>
+
 						<img
 							loading='lazy'
 							src='https://cdn.builder.io/api/v1/image/assets/TEMP/ce7152e6ca695955df27a989658851662ba6f21ee1ad352592828771e3901dba?'
