@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DatepickerViewsDecades } from "flowbite-react/lib/esm/components/Datepicker/Views/Decades";
 
 const NewMovie = () => {
   const [title, setTitle] = useState("");
@@ -21,7 +22,7 @@ const NewMovie = () => {
   const [length_minutes, setLenghtMinutes] = useState(null);
   const [age_rating, setAgeRating] = useState(null);
   const [director, setDirector] = useState("");
-  const [genres, setGenres] = useState([""]);
+  const [genres, setGenres] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [starring_actors, setStarringActors] = useState([""]);
 
@@ -56,13 +57,21 @@ const NewMovie = () => {
     setStarringActors(newActors);
   };
 
+  const handleAgeRatingChange = (event) => {
+    setAgeRating(event.target.value);
+  };
+
   return (
-    <>
-      <h2>Add a new movie</h2>
-      <form onSubmit={handleSubmit} className="flex max-w-md flex-col gap-4">
+    <div className="bg-zinc-950">
+    <div className="bg-zinc-950 grow flex-1 flex justify-center items-center">
+    <div className="bg-zinc-950 grow text-white flex flex-col justify-center items-center my-10">
+      <h2 className="text-2xl font-bold tracking-tight text-white">Add a new movie</h2>
+      <form onSubmit={handleSubmit} className=" mt-6 text-white flex w-full max-w-2xl flex-col gap-4">
+        <div className="flex flex-row gap-7">
+        <div className="flex-1">
         <div>
-          <div className="mb-2 block">
-            <Label htmlFor="" value="Title" />
+          <div className="mb-2 block text-white">
+            <Label htmlFor="" value="Title" className="text-xl text-white" />
           </div>
           <TextInput
             type="text"
@@ -73,7 +82,7 @@ const NewMovie = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Release year" />
+            <Label htmlFor="" value="Release year" className=" text-xl text-white" />
           </div>
           <TextInput
             type="text"
@@ -85,7 +94,7 @@ const NewMovie = () => {
 
         <div className="max-w-md">
           <div className="mb-2 block">
-            <Label htmlFor="comment" value="Movie description" />
+            <Label htmlFor="comment" value="Movie description" className=" text-xl text-white" />
           </div>
           <Textarea
             id="comment"
@@ -98,7 +107,7 @@ const NewMovie = () => {
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Small movie poster (URL)" />
+            <Label htmlFor="" value="Small movie poster (URL)" className=" text-xl text-white" />
           </div>
           <TextInput
             type="text"
@@ -110,7 +119,7 @@ const NewMovie = () => {
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Large movie poster (URL)" />
+            <Label htmlFor="" value="Large movie poster (URL)" className="text-xl text-white" />
           </div>
           <TextInput
             type="text"
@@ -119,34 +128,37 @@ const NewMovie = () => {
             required
           />
         </div>
+        </div>
+
+        <div>
 
         <fieldset className="flex max-w-md flex-row gap-4">
-          <legend className="mb-4">Age restriction</legend>
+          <legend className="mb-4 text-xl text-white font-semibold">Age restriction</legend>
           <div className="flex items-center gap-2">
-            <Radio id="+0" name="countries" value="0" />
-            <Label htmlFor="+0">+0</Label>
+            <Radio id="+0" name="countries" value="0" onChange={handleAgeRatingChange} />
+            <Label htmlFor="+0" className="text-white text-xl">+0</Label>
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="+6" name="countries" value="6" />
-            <Label htmlFor="+6">+6</Label>
+            <Radio id="+6" name="countries" value="6" onChange={handleAgeRatingChange} />
+            <Label htmlFor="+6" className="text-white text-xl">+6</Label>
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="+12" name="countries" value="12" />
-            <Label htmlFor="+12">+12</Label>
+            <Radio id="+12" name="countries" value="12" onChange={handleAgeRatingChange} />
+            <Label htmlFor="+12" className="text-white text-xl">+12</Label>
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="+16" name="countries" value="16" />
-            <Label htmlFor="+16">+16</Label>
+            <Radio id="+16" name="countries" value="16" onChange={handleAgeRatingChange} />
+            <Label htmlFor="+16" className="text-white text-xl">+16</Label>
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="+18" name="countries" value="18" disabled />
-            <Label htmlFor="+18">+18</Label>
+            <Radio id="+18" name="countries" value="18" onChange={handleAgeRatingChange} />
+            <Label htmlFor="+18" className="text-white text-xl">+18</Label>
           </div>
         </fieldset>
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Director" />
+            <Label htmlFor="" value="Director" className="text-white text-xl" />
           </div>
           <TextInput
             type="text"
@@ -158,7 +170,7 @@ const NewMovie = () => {
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Length (in minutes)" />
+            <Label htmlFor="" value="Length (in minutes)" className="text-white text-xl" />
           </div>
           <TextInput
             type="text"
@@ -175,6 +187,7 @@ const NewMovie = () => {
                 <Label
                   htmlFor={`director-${index}`}
                   value={`Actor ${index + 1}`}
+                  className="text-white text-xl"
                 />
               </div>
               <TextInput
@@ -189,7 +202,7 @@ const NewMovie = () => {
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="" value="Genre" />
+            <Label htmlFor="" value="Genre" className="text-white text-xl" />
           </div>
           <TextInput
             type="text"
@@ -199,9 +212,16 @@ const NewMovie = () => {
           />
         </div>
 
-        <Button type="submit">Submit</Button>
+        
+        </div>
+        
+        </div>
+        <Button type="submit" className="text-2xl submit-button-val bg-orange-500">Submit</Button>
       </form>
-    </>
+      
+    </div>
+    </div>
+    </div>
   );
 };
 
