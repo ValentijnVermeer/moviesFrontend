@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import DirectorBox from './DirectorBox';
 import {Link} from 'react-router-dom';
+import like from "../assets/public/bx_like_1.png";
+import dislike from "../assets/public/bx_dislike_1.png";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -11,7 +13,11 @@ const MovieDetails = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isShownActor, setIsShownActor] = useState([]);
+  const [comments, setComments] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [commentLikes, setCommentLikes] = useState([]);
+  const [commentDislikes, setCommentDislikes] = useState([]);
+  const [comment, setComment] = useState({"movie_id": id});
 
   useEffect(() => {
     axios
@@ -36,12 +42,29 @@ const MovieDetails = () => {
     })
     .catch(e => console.error(e)); 
 
+    axios
+    .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies/comments/${id}`)
+    .then(res => {
+      setComments(res.data);
+    })
+    .catch(e => console.error(e)); 
+
   }, []);
 
   useEffect(() => {
-    console.log(isShownActor);
- 
-  }, [isShownActor]);
+    let commentsLikeData = {};
+    commentsLikeData = comments.map(comment => {
+      return {...commentsLikeData, [comment.id]: false}
+    })
+    setCommentLikes(commentsLikeData);
+
+    let commentsDislikeData = {};
+    commentsDislikeData = comments.map(comment => {
+      return {...commentsDislikeData, [comment.id]: false}
+    })
+    setCommentLikes(commentsDislikeData);
+
+  },[comments])
 
   const LikeHandler = () => {
     setIsLiked(true);
@@ -58,7 +81,6 @@ const MovieDetails = () => {
   }
   
   const ShowActorHandler = (id) =>{
-    console.log(isShownActor);
     const newActors = isShownActor.map(actor => {
       if(actor.id === id){
         actor.value = !actor.value;
@@ -67,6 +89,40 @@ const MovieDetails = () => {
     })
     setIsShownActor(newActors);
   }
+const LikeCommentHandler = (id) => {
+  setCommentLikes({...commentLikes, [id]: true});
+  axios
+  .patch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/comment/like/${id}`)
+  .catch(e => console.error(e));
+}
+
+const DislikeCommentHandler = (id) => {
+  setCommentDislikes({...commentDislikes, [id]:true })
+  axios
+  .patch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/comment/dislike/${id}`)
+  .catch(e => console.error(e));
+}
+
+const HandleCommentChange = e => {
+  setComment({...comment, [e.target.name]: e.target.value})
+  console.log(comment);
+}
+
+const handleSubmit = e => {
+  e.preventDefault();
+  axios
+    .post(`${import.meta.env.VITE_SERVER_BASE_URL}/api/comments`, comment)
+    .then(res => {
+      setComment({"movie_id":id, "author":'', "content":''});
+      axios
+      .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies/comments/${id}`)
+      .then(res => {
+        setComments(res.data);
+      })
+      .catch(e => console.error(e)); 
+    })
+    .catch(e => console.error(e));
+};
 
   return (
     <div className="bg-zinc-950 flex flex-col items-stretch pb-11">
@@ -155,7 +211,8 @@ const MovieDetails = () => {
                 <div className="flex items-stretch mt-5">
                   <img
                     loading="lazy"
-                    src= "https://cdn.builder.io/api/v1/image/assets/TEMP/a3e8338b88c719d03234f30e672633bf231a958264e5734c3cec62992fe563fc?"
+                    src= {isLiked?like
+                      :"https://cdn.builder.io/api/v1/image/assets/TEMP/a3e8338b88c719d03234f30e672633bf231a958264e5734c3cec62992fe563fc?"}
                     className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full me-2"
                     onClick={LikeHandler}
                   />
@@ -164,7 +221,8 @@ const MovieDetails = () => {
                   </div>
                   <img
                     loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/038682105ccaff18828d31b92ed447b2117b0a74bfdc0e10919d3f27444262d3?"
+                    src={isDisliked?dislike:
+                      "https://cdn.builder.io/api/v1/image/assets/TEMP/038682105ccaff18828d31b92ed447b2117b0a74bfdc0e10919d3f27444262d3?"}
                     className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full me-2"
                     onClick={DislikeHandler}
                   />
@@ -173,19 +231,6 @@ const MovieDetails = () => {
                   </div>
                 </div>
                 <div className="flex items-stretch justify-between gap-4 mt-5">
-                  {/* <div className="shadow-lg bg-red-600 flex items-stretch justify-between gap-1.5 px-7 py-4 rounded-[100px] max-md:px-5">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba533719b34c1806d9142eebc71585fb703a217af8534199cb1de876f3c3cf44?"
-                      className="aspect-[0.91] object-contain object-center w-2.5 fill-white overflow-hidden shrink-0 max-w-full"
-                    />
-                    <div className="text-white text-sm font-semibold grow whitespace-nowrap self-start">
-                      WATCH
-                    </div>
-                  </div>
-                  <div className="text-white text-sm font-semibold whitespace-nowrap bg-zinc-900 grow justify-center items-stretch px-7 py-4 rounded-[100px] max-md:px-5">
-                    Download
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -201,7 +246,7 @@ const MovieDetails = () => {
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/fefc3103646ff08da60b910363a0d07745df585caba8a648cd1c9b8600160a5f?"
-            className="aspect-square object-contain object-center w-5 fill-red-600 overflow-hidden shrink-0 max-w-full"
+            className="aspect-square object-contain object-center w-6 fill-red-600 overflow-hidden shrink-0 max-w-full mt-2"
           />
           <div className="text-white text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap">
             Comments
@@ -211,96 +256,76 @@ const MovieDetails = () => {
           <div className="flex items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap max-md:mr-1">
             <div className="self-center flex grow basis-[0%] flex-col items-stretch my-auto max-md:max-w-full">
               <div className="text-white text-opacity-50 text-xs max-md:max-w-full">
-                Express an opinion
+              <div className=" p-4 rounded-lg max-w-xl mx-auto">
+                <form>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium mb-2" for="name">
+                            Name
+                        </label>
+                        <input
+                            className="appearance-none border border-orange-900 rounded w-full py-2 px-3  leading-tight focus:outline-none focus:border-orange-500"
+                            id="name" type="text" placeholder="Enter your name" name='author' value={comment.author}
+                            onChange={HandleCommentChange}/>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block  font-medium mb-2" for="comment">
+                            Comment
+                        </label>
+                        <textarea rows="4"
+                            className="appearance-none border border-orange-900 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-orange-500"
+                            id="comment" placeholder="Express your opinion" onChange={HandleCommentChange} name='content' value={comment.content}></textarea>
+                    </div>
+                    <div className="flex justify-end">
+                        <button
+                            className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button" onClick={handleSubmit}>Send</button>
+                    </div>
+                </form>
+            </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-between gap-5 mt-8 items-start max-md:max-w-full max-md:flex-wrap max-md:mr-1">
-            <div className="flex basis-[0%] flex-col items-center">
-            </div>
+          <div className="flex flex-col-reverse justify-between gap-5 mt-8 items-start max-md:max-w-full max-md:flex-wrap max-md:mr-1">
+            {/* here we stopped */}
+           {comments.length>0?comments.map(comment => (
             <div className="self-stretch flex grow basis-[0%] flex-col mt-1.5 max-md:max-w-full">
-              <div className="flex gap-3 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
+            <div className="flex justify-between">
+              <div className='flex gap-3 self-start items-start'>
+              <div className="justify-center text-white font-medium leading-8 grow whitespace-nowrap">
+                {comment.author}
+              </div>
+              <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
+                {comment.publish_date} days ago
+              </div>
+              </div>
+              <div className="flex items-stretch mt-1">
+                  <img
+                    loading="lazy"
+                    src= {commentLikes[comment.id]?like
+                      :"https://cdn.builder.io/api/v1/image/assets/TEMP/a3e8338b88c719d03234f30e672633bf231a958264e5734c3cec62992fe563fc?"}
+                    className="aspect-square object-contain object-center w-4 overflow-hidden shrink-0 max-w-full me-2"
+                    onClick={ () => LikeCommentHandler(comment.id) }
+                  />
+                  <div className="text-white text-sm font-semibold my-auto me-2">
+                    {commentLikes[comment.id]?comment.likes+1:comment.likes}
+                  </div>
+                  <img
+                    loading="lazy"
+                    src={commentDislikes[comment.id]?dislike:
+                      "https://cdn.builder.io/api/v1/image/assets/TEMP/038682105ccaff18828d31b92ed447b2117b0a74bfdc0e10919d3f27444262d3?"}
+                    className="aspect-square object-contain object-center w-4 overflow-hidden shrink-0 max-w-full me-2"
+                    onClick={() => DislikeCommentHandler(comment.id)}
+                  />
+                  <div className="text-white  text-sm font-semibold self-center my-auto me-2">
+                  {commentDislikes[comment.id]?comment.dislikes+1:comment.dislikes}
+                  </div>
                 </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="flex gap-3 mt-10 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
-                </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="flex gap-3 mt-10 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
-                </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="flex gap-3 mt-10 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
-                </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="flex gap-3 mt-10 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
-                </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="flex gap-3 mt-10 self-start items-start">
-                <div className="justify-center text-white text-sm font-medium leading-8 grow whitespace-nowrap">
-                  Asadbek Shomurodov
-                </div>
-                <div className="text-orange-500 text-xs leading-8 self-stretch whitespace-nowrap">
-                  a day ago
-                </div>
-              </div>
-              <div className="text-orange-500 text-sm underline self-stretch mt-4 max-md:max-w-full">
-                Lorem ipsum dolor sit amet consectetur. Ac tortor vitae id
-                lorem. Consectetur donec cursus massa nunc ullamcorper semper...{" "}
-                <span className="underline text-orange-500">More</span>
-              </div>
-              <div className="text-orange-500 text-sm underline mt-14 max-md:mt-10">
-                More all thoughts
-              </div>
             </div>
+            <div className="text-start text-orange-500 text-sm self-stretch mt-4 max-md:max-w-full">
+              {comment.content}{" "}
+            </div>
+          </div>
+           )):<p></p>}
           </div>
         </div>
         <div className="flex gap-2.5 mt-14 items-start max-md:mt-10">
