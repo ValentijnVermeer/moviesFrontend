@@ -11,7 +11,7 @@ const CarouselElement = () => {
 		const fetchMovies = async () => {
 			try {
 				const response = await axios.get(
-					`${import.meta.env.VITE_SERVER_BASE_URL}api/movies`
+					`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`
 				);
 				setMovies(response.data);
 			} catch (error) {
