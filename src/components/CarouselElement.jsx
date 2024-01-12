@@ -1,82 +1,124 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CarouselElement = () => {
 	const [movies, setMovies] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
-			.then((res) => {
-				console.log(res.data);
-				setMovies(res.data);
-			})
-			.catch((e) => console.error(e));
-	}, []);
-
-	const indicatorWidthPercent = movies.length > 0 ? 100 / movies.length : 100;
-
 	const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 	const sliderRef = useRef(null);
 
 	useEffect(() => {
-		const sliderCurrent = sliderRef.current;
-
-		if (!sliderCurrent) {
-			return;
-		}
-
-		const slides = sliderCurrent.querySelectorAll('div');
-		const slidesArray = Array.from(slides);
-		console.log(slides);
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						const index = slidesArray.indexOf(entry.target);
-						setCurrentSlideIndex(index);
-					}
-				});
-			},
-			{
-				root: sliderCurrent,
-				threshold: 0.5,
+		const fetchMovies = async () => {
+			try {
+				const response = await axios.get(
+					`${import.meta.env.VITE_SERVER_BASE_URL}api/movies`
+				);
+				setMovies(response.data);
+			} catch (error) {
+				console.error('Failed to fetch movies:', error);
 			}
-		);
-		slides.forEach((slide) => observer.observe(slide));
-
-		return () => slides.forEach((slide) => observer.unobserve(slide));
+		};
+		fetchMovies();
 	}, []);
+
+	const indicatorWidthPercent = movies.length > 0 ? 100 / movies.length : 100;
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentSlideIndex((prevIndex) =>
+				prevIndex === movies.length - 1 ? 0 : prevIndex + 1
+			);
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, [movies.length]);
+
+	const goToPreviousSlide = () => {
+		setCurrentSlideIndex((prevIndex) =>
+			prevIndex === 0 ? movies.length - 1 : prevIndex - 1
+		);
+	};
+
+	const goToNextSlide = () => {
+		setCurrentSlideIndex((prevIndex) =>
+			prevIndex === movies.length - 1 ? 0 : prevIndex + 1
+		);
+	};
+
+	const navigate = useNavigate();
+
+	const handleWatchClick = (movieId) => {
+		navigate(`/movies/${movieId}`);
+	};
 
 	return (
 		<div className='w-full'>
+			<button
+				onClick={goToPreviousSlide}
+				className='absolute left-16 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-20 ps-10 ms-1 bg-black bg-opacity-20 rounded'
+			>
+				◀︎
+			</button>
+			<button
+				onClick={goToNextSlide}
+				className='absolute right-12 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20 pe-5 me-1 bg-black bg-opacity-20 rounded'
+			>
+				▶︎
+			</button>
+
 			{/* Slider */}
 			<div
 				ref={sliderRef}
-				className='w-full flex flex-row overflow-x-scroll snap-x snap-mandatory'
-				style={{
-					paddingBottom: '15px',
-					clipPath: 'inset(0 0 15px 0)',
-				}}
+				className='w-full'
 			>
 				{Array.isArray(movies) &&
-					movies.map((movie) => {
+					movies.map((movie, index) => {
 						return (
 							<div
 								key={movie.id}
-								className='w-full flex-shrink-0 snap-start'
+								className={`relative w-full h-full p-0 m-0 snap-start bg-black ${
+									index === currentSlideIndex ? '' : 'hidden'
+								}`}
+								style={{ height: '40rem' }}
 							>
-								<img src={movie.poster} />
+								<div
+									className='absolute p-0 m-0 inset-0 bg-cover bg-center'
+									style={{ backgroundImage: `url(${movie.big_poster})` }}
+								/>
+								<div className='absolute inset-0 bg-gradient-to-r from-black to-transparent'></div>
+
+								<div className='absolute bottom-10 left-10'>
+									<h2 className='p-5 text-white text-xl font-semibold'>
+										{movie.title}
+									</h2>
+									<h3 className='text-white text-sm max-w-md ps-5 pb-5'>
+										{movie.year}
+									</h3>
+									<p className='text-white text-md max-w-md p-5'>
+										{movie.description}
+									</p>
+									<h3 className='text-white text-sm max-w-md ps-5 py-2'>
+										PG {movie.age_rating}
+									</h3>
+									<h3 className='text-white text-sm max-w-md ps-5 py-2'>
+										⭐️ {movie.rating}
+									</h3>
+									<button
+										onClick={() => handleWatchClick(movie.id)}
+										className='mt-2 ms-3 bg-orange-500 text-white px-5 py-2 rounded-full'
+									>
+										Watch {movie.title} Trailer
+									</button>
+								</div>
 							</div>
 						);
 					})}
 			</div>
 
 			{/* Scroll indicator */}
-			<div className='w-full h-0.5 relative bg-gray-300'>
+			<div className='w-full h-1 relative bg-black-300 mt-0 '>
 				<div
-					className='h-0.5 absolute top-0 left-0 bg-gray-500'
+					className='h-1 absolute top-0 left-0 bg-orange-500'
 					style={{
 						width: `${indicatorWidthPercent}%`,
 						left: `${indicatorWidthPercent * currentSlideIndex}%`,

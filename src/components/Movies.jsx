@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CategoryLinks from './CategoryLinks';
 import RecommendedMovies from './RecommendedMovies';
 import PopularMovies from './PopularMovies';

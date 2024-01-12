@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Polygon from '../assets/public/Polygon.png';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ const PopularMovies = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
+			.get(`${import.meta.env.VITE_SERVER_BASE_URL}api/movies`)
 			.then((res) => {
 				console.log(res.data);
 				setMovies(res.data);
@@ -32,7 +32,10 @@ const PopularMovies = () => {
 				<div className='mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
 					{movies !== null && Array.isArray(movies) ? (
 						movies.map((movie) => (
-							<Link to={`/movies/${movie.id}`}>
+							<Link
+								key={movie.id}
+								to={`/movies/${movie.id}`}
+							>
 								<div
 									key={movie.id}
 									className='group relative'

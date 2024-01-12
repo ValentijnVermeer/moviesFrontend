@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CarouselElement from './CarouselElement';
 
 const ParentHeaderHero = () => {

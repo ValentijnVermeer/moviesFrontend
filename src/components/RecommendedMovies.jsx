@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Polygon from '../assets/public/Polygon.png';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const RecommendedMovies = () => {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
 		axios
-			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
+			.get(`${import.meta.env.VITE_SERVER_BASE_URL}api/movies`)
 			.then((res) => {
 				console.log(res.data);
 				setMovies(res.data);

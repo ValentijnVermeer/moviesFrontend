@@ -3,13 +3,14 @@ import Polygon from '../assets/public/Polygon.png';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { useNavigate } from 'react-router-dom';
 
 const classNames = (...classes) => {
 	return classes.filter(Boolean).join(' ');
 };
-
 const Header = () => {
 	const [activeSection, setActiveSection] = useState('Home');
+	const navigate = useNavigate();
 	const getImagePosition = (activeSection) => {
 		switch (activeSection) {
 			case 'Home':
@@ -23,6 +24,9 @@ const Header = () => {
 		}
 	};
 
+	const handleNavClick = (path) => {
+		navigate(path);
+	};
 	return (
 		<header className=' overflow-hidden relative flex w-full items-stretch w-full'>
 			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-8 w-full'>
@@ -42,19 +46,28 @@ const Header = () => {
 						/>
 						<div
 							className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => setActiveSection('Home')}
+							onClick={() => {
+								setActiveSection('Home');
+								handleNavClick('/');
+							}}
 						>
 							Home
 						</div>
 						<div
 							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => setActiveSection('Movies')}
+							onClick={() => {
+								setActiveSection('Movies');
+								handleNavClick('/movies/new');
+							}}
 						>
 							Movies
 						</div>
 						<div
 							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => setActiveSection('Artists')}
+							onClick={() => {
+								setActiveSection('Artists');
+								handleNavClick('/');
+							}}
 						>
 							Artists
 						</div>
