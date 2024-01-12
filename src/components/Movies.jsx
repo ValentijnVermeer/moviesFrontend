@@ -9,7 +9,7 @@ const Movies = () => {
 			<div className='flex flex-col items-stretch'>
 				<ParentHeaderHero />
 				<CategoryLinks />
-				<RecommendedMovies />
+				{/* <RecommendedMovies /> */}
 				<PopularMovies />
 			</div>
 		</>

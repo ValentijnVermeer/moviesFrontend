@@ -5,6 +5,7 @@ import DirectorBox from './DirectorBox';
 import {Link} from 'react-router-dom';
 import like from "../assets/public/bx_like_1.png";
 import dislike from "../assets/public/bx_dislike_1.png";
+import PopularMovies from './PopularMovies';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,6 @@ const MovieDetails = () => {
   const [isDisliked, setIsDisliked] = useState(false);
   const [isShownActor, setIsShownActor] = useState([]);
   const [comments, setComments] = useState([]);
-  const [movies, setMovies] = useState([]);
   const [commentLikes, setCommentLikes] = useState([]);
   const [commentDislikes, setCommentDislikes] = useState([]);
   const [comment, setComment] = useState({"movie_id": id});
@@ -24,21 +24,6 @@ const MovieDetails = () => {
     .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movie/${id}`)
     .then(res => {
       setMovie(res.data);
-      res.data.starring_actors.map(actor => {
-        isShownActor.push({"id":actor.id,
-         "value":false, 
-         "first_name":actor.first_name,
-         "second_name":actor.second_name,
-         "date_of_birth":actor.date_of_birth,
-         "photo":actor.photo})
-      });
-    })
-    .catch(e => console.error(e)); 
-
-    axios
-    .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
-    .then(res => {
-      setMovies(res.data);
     })
     .catch(e => console.error(e)); 
 
@@ -50,6 +35,17 @@ const MovieDetails = () => {
     .catch(e => console.error(e)); 
 
   }, []);
+
+  useEffect(() => {
+    movie?.starring_actors?.map(actor => {
+      isShownActor.push({"id":actor.id,
+       "value":false, 
+       "first_name":actor.first_name,
+       "second_name":actor.second_name,
+       "date_of_birth":actor.date_of_birth,
+       "photo":actor.photo})
+    });
+  },[movie])
 
   useEffect(() => {
     let commentsLikeData = {};
@@ -328,16 +324,6 @@ const handleSubmit = e => {
            )):<p></p>}
           </div>
         </div>
-        <div className="flex gap-2.5 mt-14 items-start max-md:mt-10">
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f01c394ff46936f79672f39b2723391a9f0f048f795f2e6771dff199a02fbf6a?"
-            className="aspect-[0.83] object-contain object-center w-2.5 fill-red-600 overflow-hidden shrink-0 max-w-full mt-1"
-          />
-          <div className="text-white text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap">
-            Thoughts
-          </div>
-        </div>
       </div>{" "}
       <img
         loading="lazy"
@@ -345,6 +331,7 @@ const handleSubmit = e => {
         className="aspect-[1440] object-contain object-center w-full stroke-[1px] stroke-stone-900 overflow-hidden mt-24 max-md:max-w-full max-md:mt-10"
       />{" "}
     </div>
+    
   )
 }
 
