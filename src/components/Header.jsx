@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useNavigate } from 'react-router-dom';
+import CitrusCinemaLogo from '../assets/public/CitrusCinemaLogo.png';
 
 const classNames = (...classes) => {
 	return classes.filter(Boolean).join(' ');
@@ -31,9 +32,16 @@ const Header = () => {
 		<header className=' overflow-hidden relative flex w-full items-stretch w-full'>
 			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-8 w-full'>
 				<div className='flex w-full items-start justify-between gap-5 px-6'>
-					<div className='text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap text-left'>
-						<span className='text-orange-500'>CitrusCinema</span>
+					<div className='flex text-2xl font-medium leading-8 self-stretch grow whitespace-nowrap text-left'>
+					<img
+							loading='lazy'
+							src={CitrusCinemaLogo}
+							className="w-30 h-10"
+			
+							style={{ top: '50%', transform: 'translateY(-50%)' }}
+						/>
 						<span>&#127818;</span>
+						
 					</div>
 					<div className='self-center flex items-center gap-2 my-auto mx-2 relative'>
 						<img

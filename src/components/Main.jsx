@@ -7,7 +7,7 @@ import UpdateMovie from "./UpdateMovie";
 
 const Main = () => {
   return (
-    <div>
+    <div className="bg-zinc-950">
       <Routes>
         <Route path="/" element={<Movies />} />
         <Route path="/movies/new" element={<NewMovie />} />
