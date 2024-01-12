@@ -13,7 +13,6 @@ const CarouselElement = () => {
 				const response = await axios.get(
 					`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`
 				);
-				console.log(response);
 				setMovies(response.data);
 			} catch (error) {
 				console.error('Failed to fetch movies:', error);
@@ -108,7 +107,7 @@ const CarouselElement = () => {
 										onClick={() => handleWatchClick(movie.id)}
 										className='mt-2 ms-3 bg-orange-500 text-white px-5 py-2 rounded-full'
 									>
-										Watch {movie.title} Trailer
+										See {movie.title} Details
 									</button>
 								</div>
 							</div>

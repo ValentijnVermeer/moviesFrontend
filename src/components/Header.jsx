@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Polygon from '../assets/public/Polygon.png';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
@@ -12,14 +12,26 @@ const classNames = (...classes) => {
 const Header = () => {
 	const [activeSection, setActiveSection] = useState('Home');
 	const navigate = useNavigate();
+	const [isWideViewport, setIsWideViewport] = useState(
+		window.innerWidth >= 900
+	);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsWideViewport(window.innerWidth >= 900);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	const getImagePosition = (activeSection) => {
 		switch (activeSection) {
 			case 'Home':
-				return 'left-[0]';
+				return 'left-[-0.1rem]';
 			case 'Movies':
 				return 'left-[4.25rem]';
-			case 'Artists':
-				return 'left-[9.2rem]';
 			default:
 				return 'left-0';
 		}
@@ -32,53 +44,76 @@ const Header = () => {
 		<header className=' overflow-hidden relative flex w-full items-stretch w-full'>
 			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-8 w-full'>
 				<div className='flex w-full items-start justify-between gap-5 px-6'>
-					<div className='flex text-xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
-					<img
-							loading='lazy'
-							src={CitrusCinemaLogo}
-							className="w-30 h-10"
-			
-							style={{ top: '50%', transform: 'translateY(-50%)' }}
-						/>
-						<span>&#127818;</span>
-						
-					</div>
+					{isWideViewport ? (
+						<div className='flex text-xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
+							<img
+								loading='lazy'
+								src={CitrusCinemaLogo}
+								className='w-30 h-10'
+								style={{ top: '50%', transform: 'translateY(-50%)' }}
+							/>
+							<span>&#127818;</span>
+						</div>
+					) : (
+						<div className='flex text-4xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
+							&#127818;
+						</div>
+					)}
 					<div className='self-center flex items-center gap-2 my-auto mx-2 relative'>
-						<img
-							loading='lazy'
-							src={Polygon}
-							className={`absolute object-contain object-center w-2 max-w-full transition-all duration-300 ${getImagePosition(
-								activeSection
-							)}`}
-							style={{ top: '50%', transform: 'translateY(-50%)' }}
-						/>
-						<div
-							className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => {
-								setActiveSection('Home');
-								handleNavClick('/');
-							}}
-						>
-							Home
-						</div>
-						<div
-							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => {
-								setActiveSection('Movies');
-								handleNavClick('/movies/new');
-							}}
-						>
-							Movies
-						</div>
-						<div
-							className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
-							onClick={() => {
-								setActiveSection('Artists');
-								handleNavClick('/');
-							}}
-						>
-							Artists
-						</div>
+						{isWideViewport ? (
+							<img
+								loading='lazy'
+								src={Polygon}
+								className={`absolute object-contain object-center w-2 max-w-full transition-all duration-300 ${getImagePosition(
+									activeSection
+								)}`}
+								style={{ top: '50%', transform: 'translateY(-50%)' }}
+							/>
+						) : (
+							<span></span>
+						)}
+						{isWideViewport ? (
+							<div
+								className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer'
+								onClick={() => {
+									setActiveSection('Home');
+									handleNavClick('/');
+								}}
+							>
+								Home
+							</div>
+						) : (
+							<div
+								className='flex text-white text-base font-bold mx-2 text-4xl grow self-stretch cursor-pointer'
+								onClick={() => {
+									setActiveSection('Home');
+									handleNavClick('/');
+								}}
+							>
+								⌂
+							</div>
+						)}
+						{isWideViewport ? (
+							<div
+								className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
+								onClick={() => {
+									setActiveSection('Movies');
+									handleNavClick('/movies/new');
+								}}
+							>
+								Add Movies
+							</div>
+						) : (
+							<div
+								className='flex text-white text-base font-semibold mx-2 text-4xl grow self-stretch cursor-pointer'
+								onClick={() => {
+									setActiveSection('Movies');
+									handleNavClick('/movies/new');
+								}}
+							>
+								+
+							</div>
+						)}
 					</div>
 
 					<div>
@@ -114,13 +149,22 @@ const Header = () => {
 								className='relative inline-block text-left'
 							>
 								<div>
-									<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap'>
-										My Profile
-										<ChevronDownIcon
-											className='-mr-1 h-5 w-5 text-white-600'
-											aria-hidden='true'
-										/>
-									</Menu.Button>
+									{isWideViewport ? (
+										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap'>
+											My Profile
+											<ChevronDownIcon
+												className='-mr-1 h-5 w-5 text-white-600'
+												aria-hidden='true'
+											/>
+										</Menu.Button>
+									) : (
+										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap text-4xl'>
+											<ChevronDownIcon
+												className='-mr-1 h-5 w-5 text-white-600 text-4xl grow self-stretch'
+												aria-hidden='true'
+											/>
+										</Menu.Button>
+									)}
 								</div>
 
 								<Transition
@@ -132,7 +176,7 @@ const Header = () => {
 									leaveFrom='transform opacity-100 scale-100'
 									leaveTo='transform opacity-0 scale-95'
 								>
-									<Menu.Items className='fixed right-25 z-10 mt-2 w-56 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+									<Menu.Items className='fixed right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
 										<div className='py-1'>
 											<Menu.Item>
 												{({ active }) => (

@@ -1,9 +1,5 @@
-import React from 'react'
-
 const UpdateMovie = () => {
-  return (
-    <div>UpdateMovie</div>
-  )
-}
+	return <div>UpdateMovie</div>;
+};
 
-export default UpdateMovie
+export default UpdateMovie;
