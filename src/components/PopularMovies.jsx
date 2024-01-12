@@ -24,7 +24,10 @@ const PopularMovies = () => {
 						src={Polygon}
 						className='object-cover object-center w-3 fill-red-600 overflow-hidden shrink-0 max-w-full my-auto mr-3'
 					/>
-					<h2 className='text-2xl font-bold tracking-tight text-white'>
+					<h2
+						id='popular'
+						className='text-2xl font-bold tracking-tight text-white'
+					>
 						Popular
 					</h2>
 				</div>

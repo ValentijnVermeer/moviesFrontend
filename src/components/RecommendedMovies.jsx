@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Polygon from '../assets/public/Polygon.png';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 
 const RecommendedMovies = () => {
 	const [movies, setMovies] = useState([]);
@@ -25,7 +24,10 @@ const RecommendedMovies = () => {
 						src={Polygon}
 						className='object-cover object-center w-3 fill-red-600 overflow-hidden shrink-0 max-w-full my-auto mr-3'
 					/>
-					<h2 className='text-2xl font-bold tracking-tight text-white'>
+					<h2
+						id='top_rated'
+						className='text-2xl font-bold tracking-tight text-white'
+					>
 						Recommended
 					</h2>
 				</div>

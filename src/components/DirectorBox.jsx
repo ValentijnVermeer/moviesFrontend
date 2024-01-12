@@ -1,10 +1,6 @@
 import React from 'react'
 
 function DirectorBox({id, firstName, secondName, dateOfBirth, photo}) {
-console.log(photo);
-
-
-
   return (
     <div className='absolute bg-gray-950 bg-opacity-80 p-10'>
       <img 
