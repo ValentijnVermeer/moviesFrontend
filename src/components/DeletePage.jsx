@@ -18,11 +18,11 @@ function DeletePage({id,setDeleteConfirmation,deleteConfirmation}) {
     <div className="absolute top-0 bottom-0 right-0 left-0 w-100 h-100 z-10 bg-opacity-80 antialiased bg-zinc-900 text-gray-900 font-sans overflow-x-hidden">
     <div className=" relative px-4 min-h-screen md:flex md:items-center md:justify-center">
       <div className="bg-black opacity-25 w-full h-full absolute z-10 inset-0"></div>
-      <div className="bg-white rounded-lg md:max-w-md md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative">
-        <div className="md:flex items-center">
-          <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
-            <p className="font-bold">Delete this movie</p>
-            <p className="text-sm text-gray-700 mt-1">You will lose all data about this movie by deleting it. This action cannot be undone.
+      <div className="bg-zinc-800 rounded-lg md:max-w-md md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative">
+        <div className="flex items-start">
+          <div className="mt-4 md:mt-0 md:ml-6 text-start">
+            <p className="text-orange-500 font-bold">Delete this movie</p>
+            <p className="text-sm text-white mt-1">You will lose all data about this movie by deleting it. This action cannot be undone.
             </p>
           </div>
         </div>

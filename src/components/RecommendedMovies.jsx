@@ -8,7 +8,7 @@ const RecommendedMovies = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
+			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies/recommended`)
 			.then((res) => {
 				setMovies(res.data);
 			})
