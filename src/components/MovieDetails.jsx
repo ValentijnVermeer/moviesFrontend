@@ -266,7 +266,7 @@ const handleSubmit = e => {
                           Name
                         </label>
                         <input
-                          className="appearance-none border border-orange-900 rounded w-full py-2 px-3  leading-tight focus:outline-none focus:border-orange-500"
+                          className="appearance-none border border-orange-900 bg-zinc-900 rounded w-full py-2 px-3  leading-tight focus:outline-none focus:border-orange-500"
                           id="name" type="text" placeholder="Enter your name" name='author' value={comment.author}
                           onChange={HandleCommentChange} />
                       </div>
@@ -275,7 +275,7 @@ const handleSubmit = e => {
                           Comment
                         </label>
                         <textarea rows="4"
-                          className="appearance-none border border-orange-900 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-orange-500"
+                          className="appearance-none border border-orange-900 bg-zinc-900 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-orange-500"
                           id="comment" placeholder="Express your opinion" onChange={HandleCommentChange} name='content' value={comment.content}></textarea>
                       </div>
                       <div className="flex justify-end">
