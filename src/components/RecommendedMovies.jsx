@@ -17,8 +17,8 @@ const RecommendedMovies = () => {
 
 	return (
 		<div className='bg-zinc-950'>
-			<div className='py-16 sm:px-6 sm:py-24 px-16'>
-				<div className='flex ms-16 p-4'>
+			<div className='py-6 sm:px-1 sm:py-8 px-6'>
+				<div className='flex ms-7 p-1'>
 					<img
 						loading='lazy'
 						src={Polygon}

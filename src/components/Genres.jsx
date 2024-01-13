@@ -42,8 +42,8 @@ const Genres = () => {
 	}, [selectedGenreId]);
 
 	return (
-		<div className='px-6 py-16 sm:px-6 sm:py-24 bg-zinc-950'>
-			<div className=' flex w-full flex-col py-12 max-md:max-w-full'>
+		<div className='px-3 py-3 sm:px-3 sm:py-5 bg-zinc-950 mt-3'>
+			<div className=' flex w-full flex-col py-2 max-md:max-w-full'>
 				<ButtonGroup className='items-start flex justify-between gap-5 px-5 max-md:max-w-full flex-wrap justify-evenly items-center'>
 					{genres.map((genre) => {
 						return (
@@ -59,7 +59,7 @@ const Genres = () => {
 				</ButtonGroup>
 			</div>
 			<div>
-				<div className='my-10 mx-10 grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+				<div className='my-3 mx-3 grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
 					{movies !== null && Array.isArray(movies) ? (
 						movies.map((movie) => (
 							<Link
