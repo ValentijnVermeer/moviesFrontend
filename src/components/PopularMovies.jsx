@@ -17,7 +17,7 @@ const PopularMovies = () => {
 
 	return (
 		<div className='bg-zinc-950'>
-			<div className=' py-16 sm:px-6 sm:py-24 px-16'>
+			<div className=' pt-16 sm:px-10 px-16 sm:justify-center'>
 				<div className='flex ms-16 p-4'>
 					<img
 						loading='lazy'
@@ -42,7 +42,7 @@ const PopularMovies = () => {
 									key={movie.id}
 									className='group relative px-16'
 								>
-									<div className='relative aspect-h-1 aspect-w-1 w-60 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
+									<div className='relative w-60 object-center overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
 										<img
 											src={movie.poster}
 											className='h-full w-full object-cover object-center lg:h-full lg:w-full'

@@ -58,8 +58,8 @@ const Genres = () => {
 					})}
 				</ButtonGroup>
 			</div>
-			<div>
-				<div className='my-3 mx-3 grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+			<div className='pt-16 sm:px-10 px-16 sm:justify-center'>
+				<div className='my-3 pt-16 mx-3 grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
 					{movies !== null && Array.isArray(movies) ? (
 						movies.map((movie) => (
 							<Link
@@ -68,9 +68,9 @@ const Genres = () => {
 							>
 								<div
 									key={movie.id}
-									className='group relative mx-16'
+									className='group relative mx-16 sm:object-center'
 								>
-									<div className='relative aspect-h-1 aspect-w-1 overflow-hidden rounded-md bg-gray-200 w-56 group-hover:opacity-75 lg:h-80'>
+									<div className='relative aspect-h-1 aspect-w-1 overflow-hidden rounded-md bg-gray-200 w-60 group-hover:opacity-75 lg:h-80'>
 										<img
 											src={movie.poster}
 											className='h-full w-full object-cover object-center lg:h-full lg:w-full'

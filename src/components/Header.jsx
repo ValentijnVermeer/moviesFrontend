@@ -10,7 +10,7 @@ const classNames = (...classes) => {
 	return classes.filter(Boolean).join(' ');
 };
 const Header = () => {
-	const [activeSection, setActiveSection] = useState('Home');
+	const [activeSection, setActiveSection] = useState('');
 	const navigate = useNavigate();
 	const [isWideViewport, setIsWideViewport] = useState(
 		window.innerWidth >= 900
@@ -29,9 +29,9 @@ const Header = () => {
 	const getImagePosition = (activeSection) => {
 		switch (activeSection) {
 			case 'Home':
-				return 'left-[-0.1rem]';
+				return 'left-[-0.3rem]';
 			case 'Movies':
-				return 'left-[4.25rem]';
+				return 'left-[3.9rem]';
 			default:
 				return 'left-0';
 		}
@@ -55,12 +55,12 @@ const Header = () => {
 							<span>&#127818;</span>
 						</div>
 					) : (
-						<div className='flex text-4xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
+						<div className='flex text-5xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
 							&#127818;
 						</div>
 					)}
 					<div className='self-center flex items-center gap-2 my-auto mx-2 relative'>
-						{isWideViewport ? (
+						{isWideViewport && activeSection ? (
 							<img
 								loading='lazy'
 								src={Polygon}
@@ -74,7 +74,7 @@ const Header = () => {
 						)}
 						{isWideViewport ? (
 							<div
-								className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer'
+								className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Home');
 									handleNavClick('/');
@@ -84,7 +84,7 @@ const Header = () => {
 							</div>
 						) : (
 							<div
-								className='flex text-white text-base font-bold mx-2 text-4xl grow self-stretch cursor-pointer'
+								className='flex text-white text-base font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Home');
 									handleNavClick('/');
@@ -95,7 +95,7 @@ const Header = () => {
 						)}
 						{isWideViewport ? (
 							<div
-								className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer'
+								className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Movies');
 									handleNavClick('/movies/new');
@@ -105,7 +105,7 @@ const Header = () => {
 							</div>
 						) : (
 							<div
-								className='flex text-white text-base font-semibold mx-2 text-4xl grow self-stretch cursor-pointer'
+								className='flex text-white text-base font-semibold mx-2 text-5xl grow self-stretch cursor-pointer transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Movies');
 									handleNavClick('/movies/new');
@@ -136,7 +136,7 @@ const Header = () => {
 								<input
 									type='text'
 									placeholder='Search'
-									className='w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-transparent focus:bg-black focus:border-orange-600'
+									className='w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-transparent focus:bg-black focus:border-orange-500'
 								/>
 							</div>
 						</form>
@@ -158,7 +158,7 @@ const Header = () => {
 											/>
 										</Menu.Button>
 									) : (
-										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap text-4xl'>
+										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent p-3 font-semibold text-white nowrap text-5xl'>
 											<ChevronDownIcon
 												className='-mr-1 h-5 w-5 text-white-600 text-4xl grow self-stretch'
 												aria-hidden='true'
