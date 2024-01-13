@@ -59,7 +59,7 @@ const NewMovie = () => {
 
   const handleGenreSelect = (event) => {
     const selectedOptions = Array.from(event.target.selectedOptions).map(
-      (option) => option.value
+      (option) => parseInt(option.value, 10)
     );
     setSelectedGenres(selectedOptions);
   };
@@ -93,21 +93,18 @@ const NewMovie = () => {
       console.log(directorId);
 
       let actorIds = [];
-      for (const actor of starring_actors) {
-        if (actor) {
-          const actorResponse = await axios.post(
-            `${import.meta.env.VITE_SERVER_BASE_URL}/api/artists`,
-            {
-              first_name: actorFirstName,
-              second_name: actorLastName,
-              date_of_birth: formattedDateOfBirthActor,
-              photo: actorPhoto,
-            }
-          );
-          actorIds.push(actorResponse.data.id);
-          console.log(actorId);
+      const actorResponse = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/artists`,
+        {
+          first_name: actorFirstName,
+          second_name: actorLastName,
+          date_of_birth: formattedDateOfBirthActor,
+          photo: actorPhoto,
         }
-      }
+      );
+      actorIds.push(actorResponse.data.id);
+      console.log(actorIds);
+
       axios.post(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`, {
         title,
         year,
@@ -117,8 +114,8 @@ const NewMovie = () => {
         length_minutes,
         age_rating,
         director: directorId,
-        genres,
-        actors: actorIds,
+        genres: selectedGenres,
+        starring_actors: actorIds,
       });
       navigate("/");
     } catch (error) {
@@ -466,30 +463,10 @@ const NewMovie = () => {
                     onChange={handleGenreSelect}
                   >
                     {genres.map((genre) => (
-                      <option key={genre.id} value={genre.title}>
+                      <option key={genre.id} value={genre.id}>
                         {genre.title}
                       </option>
                     ))}
-                    {/* <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Family">Family</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Detective">Detective</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Science Fiction">Science Fiction</option>
-                    <option value="Western">Western</option>
-                    <option value="Musicals">Musicals</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="Historical">Historical</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Apocalyptic">Apocalyptic</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Drama">Drama</option> */}
                   </Select>
                 </div>
               </div>
