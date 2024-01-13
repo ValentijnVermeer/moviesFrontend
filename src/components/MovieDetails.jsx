@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import DirectorBox from './DirectorBox';
 import like from "../assets/public/bx_like_1.png";
@@ -176,11 +176,13 @@ const handleSubmit = e => {
                   </div>
                   <div className="text-left text-orange-500 text-sm font-medium mt-3">
                     <span className="font-semibold text-gray-50 pe-1">Director:</span>{" "}
-                    <span className="text-orange-500"><a
+                    <span className="text-orange-500"><Link
+                      key={movie?.director?.id}
+                      to={`/artists/${movie?.director?.id}`}
                       onMouseEnter={() => setIsShownDirector(true)}
                       onMouseLeave={() => setIsShownDirector(false)}
                       className='text-orange-500 underline underline-offset-1'>
-                      {movie.director?.first_name} {movie.director?.second_name}</a></span>
+                      {movie.director?.first_name} {movie.director?.second_name}</Link></span>
                     {isShownDirector && (<DirectorBox
                       id={movie.director.id}
                       firstName={movie.director.first_name}
@@ -191,11 +193,13 @@ const handleSubmit = e => {
                   <div className="text-left text-orange-500 text-sm font-medium mt-3">
                     <span className="font-semibold text-gray-50 pe-1">Cast:</span>{" "}
                     <span className="text-orange-500">{movie?.starring_actors?.length > 0 ? movie.starring_actors.map((actor, index) => (
-                      <a
+                      <Link
+                      key={actor?.id}
+                      to={`/artists/${actor?.id}`}
                         onMouseEnter={() => ShowActorHandler(actor.id)}
                         onMouseLeave={() => ShowActorHandler(actor.id)}
                         className='text-orange-500 underline underline-offset-1'>
-                        {actor?.first_name} {actor?.second_name}, </a>
+                        {actor?.first_name} {actor?.second_name}, </Link>
                     )) : <p>.</p>}</span>
                     {isShownActor?.length > 0 ? isShownActor.map(obj => {
                       if (obj.value) {

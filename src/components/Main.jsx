@@ -3,6 +3,7 @@ import Movies from './Movies';
 import NewMovie from './NewMovie';
 import MovieDetails from './MovieDetails';
 import UpdateMovie from './UpdateMovie';
+import ArtistDetails from './ArtistDetails';
 
 const Main = () => {
 	return (
@@ -23,6 +24,10 @@ const Main = () => {
 				<Route
 					path='/movies/:id/update'
 					element={<UpdateMovie />}
+				/>
+				<Route
+					path='/artists/:id/'
+					element={<ArtistDetails />}
 				/>
 			</Routes>
 		</div>
