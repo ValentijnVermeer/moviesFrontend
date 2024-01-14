@@ -13,6 +13,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DatepickerViewsDecades } from "flowbite-react/lib/esm/components/Datepicker/Views/Decades";
 import { Datepicker } from "flowbite-react";
+import NewMovieMovie from './NewMovieMovie'
+import NewMovieDirector from './NewMovieDirector';
+import NewMovieActor from './NewMovieActor';
 
 const NewMovie = () => {
   const [title, setTitle] = useState("");
@@ -139,6 +142,7 @@ const NewMovie = () => {
 	};
 
   return (
+    <>
     <div className="bg-zinc-950">
       <div className="bg-zinc-950 grow flex-1 flex justify-center items-center">
         <div className="bg-zinc-950 grow text-white flex flex-col justify-center items-center my-10">
@@ -233,7 +237,7 @@ const NewMovie = () => {
               </div>
 
               <div>
-                <fieldset className="flex max-w-md flex-row gap-4">
+                {/* <fieldset className="flex max-w-md flex-row gap-4">
                   <legend className="mb-4 text-xl text-white font-semibold">
                     Age restriction
                   </legend>
@@ -292,7 +296,7 @@ const NewMovie = () => {
                       +18
                     </Label>
                   </div>
-                </fieldset>
+                </fieldset> */}
 
                 <div>
                   <div className="mb-2 block">
@@ -481,6 +485,18 @@ const NewMovie = () => {
         </div>
       </div>
     </div>
+
+
+
+<NewMovieMovie />
+<NewMovieDirector />
+<NewMovieActor />
+</>
+
+
+
+
+
   );
 };
 

@@ -31,3 +31,7 @@ button:hover {
 .car-button {
 	border: none;
 }
+
+.custom-select-val {
+	background-image: none !important;
+}
