@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Checkbox,
@@ -134,9 +134,9 @@ const NewMovie = () => {
   //   setStarringActors(newActors);
   // };
 
-  const handleAgeRatingChange = (event) => {
-    setAgeRating(event.target.value);
-  };
+	const handleAgeRatingChange = (event) => {
+		setAgeRating(event.target.value);
+	};
 
   return (
     <div className="bg-zinc-950">

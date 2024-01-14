@@ -47,9 +47,9 @@ const PopularMovies = () => {
 											src={movie.poster}
 											className='h-full w-full object-cover object-center lg:h-full lg:w-full'
 										/>
-										<div className='absolute bottom-3 left-2 mt-4 flex justify-between text-white'>
+										<div className='absolute bottom-0 left-0 mt-4 flex justify-center w-full backdrop-blur-3xl text-white'>
 											<div>
-												<h3 className='text-xl text-white font-semibold'>
+												<h3 className='text-xl text-white font-semibold text-center'>
 													{movie.title}
 												</h3>
 											</div>
