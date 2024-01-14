@@ -98,7 +98,7 @@ const Header = () => {
 							<span>&#127818;</span>
 						</div>
 					) : (
-						<div className='flex text-5xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
+						<div className='flex text-5xl pt-2 leading-10 whitespace-nowrap '>
 							&#127818;
 						</div>
 					)}
@@ -127,7 +127,7 @@ const Header = () => {
 							</div>
 						) : (
 							<div
-								className='flex text-white text-lg font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
+								className='flex text-white font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Home');
 									handleNavClick('/');
@@ -148,7 +148,7 @@ const Header = () => {
 							</div>
 						) : (
 							<div
-								className='flex text-white text-base font-semibold mx-2 text-5xl grow self-stretch cursor-pointer transition ease-in-out hover:scale-110'
+								className='flex text-white font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Movies');
 									handleNavClick('/movies/new');
@@ -227,7 +227,7 @@ const Header = () => {
 									) : (
 										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent p-3 font-semibold text-white nowrap text-5xl'>
 											<ChevronDownIcon
-												className='-mr-1 h-5 w-5 text-white-600 text-4xl grow self-stretch'
+												className=' h-5 w-5 text-white text-4xl grow self-stretch'
 												aria-hidden='true'
 											/>
 										</Menu.Button>
