@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewMovieMovie = () => {
+const NewMovieMovie = ({handleNext}) => {
   const [genres, setGenres] = useState([]);
   const [lengthMinutes, setLetMinutes] = useState(null)
 
@@ -32,6 +32,8 @@ const NewMovieMovie = () => {
     console.log("handleAgeRatingChange");
   };
 
+
+
   return (
     <div className="bg-zinc-950 flex items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap max-md:mr-1">
       <div className="self-center flex grow basis-[0%] flex-col items-stretch my-auto max-md:max-w-full">
@@ -58,9 +60,11 @@ const NewMovieMovie = () => {
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3   focus:outline-none focus:border-orange-500"
                   id="name"
                   type="text"
+                  value={title}
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -75,9 +79,10 @@ const NewMovieMovie = () => {
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3  focus:outline-none focus:border-orange-500"
                   id="comment"
                   placeholder="Express your opinion"
-                  onChange={HandleCommentChange}
+                  onChange={(e) => setDescription(e.target.value)}
                   name="content"
-                  value="Enter a movie description..."
+                  value={description}
+                  required
                 ></textarea>
               </div>
 
@@ -88,6 +93,9 @@ const NewMovieMovie = () => {
                 <select
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3  focus:outline-none focus:border-orange-500"
                   id="grid-state"
+                  onChange={(e) => setYear(e.target.value)}
+                  value={year}
+                  required
                 >
                   <option>Select a year</option>
                   <option>1990</option>
@@ -106,7 +114,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={poster}
+                  onChange={(e) => setPoster(e.target.value)}
+                  required
                 />
               </div>
 
@@ -120,7 +130,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={big_poster}
+                  onChange={(e) => setBigPoster(e.target.value)}
+                  required
                 />
               </div>
 
@@ -134,7 +146,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Length (in minutes)"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={length_minutes}
+                  onChange={(e) => setLengthMinutes(e.target.value)}
+                  required
                 />
               </div>
 
@@ -231,16 +245,16 @@ const NewMovieMovie = () => {
                   ))}
                 </select>
               </div>
-
               <div className="flex justify-end">
                 <button
                   className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
-                  onClick={handleSubmit}
+                  onClick={handleNext}
                 >
-                  Submit
+                  Next
                 </button>
               </div>
+  
             </form>
           </div>
         </div>
