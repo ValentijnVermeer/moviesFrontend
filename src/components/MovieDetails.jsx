@@ -19,6 +19,7 @@ const MovieDetails = () => {
   const [commentDislikes, setCommentDislikes] = useState([]);
   const [comment, setComment] = useState({"movie_id": id});
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +62,9 @@ const MovieDetails = () => {
       return {...commentsDislikeData, [comment.id]: false}
     })
     setCommentLikes(commentsDislikeData);
+    setTimeout(() => {
+			setLoading(false);
+	}, 500);
 
   },[comments])
 
@@ -125,6 +129,13 @@ const handleSubmit = e => {
   return (
     <>
     {deleteConfirmation?<DeletePage id={id} setDeleteConfirmation={setDeleteConfirmation} />:<></>}
+    {loading?<div class="flex items-center justify-center min-h-screen p-5 bg-black-900 min-w-screen">
+				<div class="flex space-x-2 animate-pulse">
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+				</div>
+				</div>:
     <div className="bg-zinc-950 flex flex-col items-stretch pb-11">
         <div className="self-center flex w-full max-w-[1140px] flex-col mt-12 px-5 items-start max-md:max-w-full max-md:mt-10">
           <div className="w-[507px] max-w-full">
@@ -336,7 +347,7 @@ const handleSubmit = e => {
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/69f63c6a40264333b18013a2376313d9abdfd5ac26df710f384ca11c9e02fa57?"
           className="aspect-[1440] object-contain object-center w-full stroke-[1px] stroke-stone-900 overflow-hidden mt-24 max-md:max-w-full max-md:mt-10" />{" "}
-      </div></>
+      </div>}</>
     
   )
 }

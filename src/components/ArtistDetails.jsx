@@ -7,6 +7,7 @@ function ArtistDetails() {
   const { id } = useParams();
   const [artist, setArtist] = useState({});
   const [movies, setMovies] = useState({});
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -15,6 +16,9 @@ function ArtistDetails() {
     .then(res => {
       console.log(res.data[0]);
       setArtist(res.data[0]);
+      setTimeout(() => {
+				setLoading(false);
+		}, 500);
     })
     .catch(e => console.error(e)); 
 
@@ -33,7 +37,7 @@ function ArtistDetails() {
 
   return (
     <>
-    {Object.keys(artist).length !== 0?
+    {!loading?
     <div className="bg-zinc-950 flex flex-col items-stretch pb-11">
     <div className="self-center flex w-full max-w-[1140px] flex-col mt-12 px-5 items-start max-md:max-w-full max-md:mt-10">
       <div className="w-[507px] max-w-full">
@@ -70,7 +74,13 @@ function ArtistDetails() {
         </div>
       </div>
     </div>{" "}
-  </div>:<p></p>}
+  </div>:<div class="flex items-center justify-center min-h-screen p-5 bg-black-900 min-w-screen">
+				<div class="flex space-x-2 animate-pulse">
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+				</div>
+				</div>}
   {movies?.as_starring_actors?.length!==0?<div className='bg-zinc-950 pb-10'>
 			<div className='pt-16 sm:px-10 px-16 sm:justify-center'>
 				<div className='flex ms-7 p-1'>
@@ -121,7 +131,13 @@ function ArtistDetails() {
 					)}
 				</div>
 			</div>
-		</div>:<p></p>}
+		</div>:<div class="flex items-center justify-center min-h-screen p-5 bg-black-900 min-w-screen">
+				<div class="flex space-x-2 animate-pulse">
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+						<div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+				</div>
+				</div>}
     
   </>
   )
