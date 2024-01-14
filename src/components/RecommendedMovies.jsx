@@ -35,6 +35,7 @@ const RecommendedMovies = () => {
 					{movies !== null && Array.isArray(movies) ? (
 						movies
 							.filter((movie) => movie.rating > 7)
+							.slice(0, 8)
 							.map((movie) => (
 								<Link
 									key={movie.id}

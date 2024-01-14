@@ -10,10 +10,14 @@ const PopularMovies = () => {
 		axios
 			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies/popular`)
 			.then((res) => {
-				setMovies(res.data);
+				const shuffledMovies = shuffleArray(res.data).slice(0, 8);
+				setMovies(shuffledMovies);
 			})
 			.catch((e) => console.error(e));
 	}, []);
+	const shuffleArray = (array) => {
+		return array.sort(() => Math.random() - 0.5);
+	};
 
 	return (
 		<div className='bg-zinc-950'>
