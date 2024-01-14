@@ -1,9 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewMovieMovie = () => {
-  const [genres, setGenres] = useState([]);
-  const [lengthMinutes, setLetMinutes] = useState(null)
+const NewMovieMovie = ({
+  title,
+  year,
+  description,
+  poster,
+  big_poster,
+  length_minutes,
+  age_rating,
+  handleNext,
+  setTitle,
+  setYear,
+  setDescription,
+  setPoster,
+  setBigPoster,
+  setLenghtMinutes,
+  setAgeRating,
+  genres,
+  setGenres,
+  selectedGenres,
+  setSelectedGenres,
+  handleGenreSelect
+}) => {
 
   useEffect(() => {
     axios
@@ -15,10 +34,6 @@ const NewMovieMovie = () => {
 
       .catch((error) => console.error("Error fetching genres:", error));
   }, []);
-
-  const handleGenreSelect = (e) => {
-    console.log("something");
-  };
 
   const HandleCommentChange = (e) => {
     console.log("something");
@@ -37,18 +52,19 @@ const NewMovieMovie = () => {
       <div className="self-center flex grow basis-[0%] flex-col items-stretch my-auto max-md:max-w-full">
         <div className="text-white text-opacity-50 text-xs max-md:max-w-full">
           <div className=" p-4 rounded-lg max-w-xl mx-auto">
-          <h2
-						id='top_rated'
-						className='text-2xl font-bold tracking-tight text-white mb-4'
-					>
-						Add a new movie
-					</h2>
-          <p
-						id='top_rated'
-						className='text-xl font-bold tracking-tight text-white mb-4'
-					>
-						Please provide information about the <span className="text-orange-500">movie</span>
-					</p>
+            <h2
+              id="top_rated"
+              className="text-2xl font-bold tracking-tight text-white mb-4"
+            >
+              Add a new movie
+            </h2>
+            <p
+              id="top_rated"
+              className="text-xl font-bold tracking-tight text-white mb-4"
+            >
+              Please provide information about the{" "}
+              <span className="text-orange-500">movie</span>
+            </p>
             <form>
               <div className="mb-4">
                 <label className="block text-white font-medium mb-2" for="name">
@@ -58,9 +74,11 @@ const NewMovieMovie = () => {
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3   focus:outline-none focus:border-orange-500"
                   id="name"
                   type="text"
+                  value={title}
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -75,9 +93,10 @@ const NewMovieMovie = () => {
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3  focus:outline-none focus:border-orange-500"
                   id="comment"
                   placeholder="Express your opinion"
-                  onChange={HandleCommentChange}
+                  onChange={(e) => setDescription(e.target.value)}
                   name="content"
-                  value="Enter a movie description..."
+                  value={description}
+                  required
                 ></textarea>
               </div>
 
@@ -88,6 +107,9 @@ const NewMovieMovie = () => {
                 <select
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3  focus:outline-none focus:border-orange-500"
                   id="grid-state"
+                  onChange={(e) => setYear(e.target.value)}
+                  value={year}
+                  required
                 >
                   <option>Select a year</option>
                   <option>1990</option>
@@ -106,7 +128,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={poster}
+                  onChange={(e) => setPoster(e.target.value)}
+                  required
                 />
               </div>
 
@@ -120,7 +144,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Enter movie title"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={big_poster}
+                  onChange={(e) => setBigPoster(e.target.value)}
+                  required
                 />
               </div>
 
@@ -134,7 +160,9 @@ const NewMovieMovie = () => {
                   type="text"
                   placeholder="Length (in minutes)"
                   name="title"
-                  onChange={HandleCommentChange}
+                  value={length_minutes}
+                  onChange={(e) => setLengthMinutes(e.target.value)}
+                  required
                 />
               </div>
 
@@ -217,28 +245,27 @@ const NewMovieMovie = () => {
                     className="text-white text-xl"
                   />
                 </div>
-                <select 
+                <select
                   multiple
                   id="genres"
                   required
                   onChange={handleGenreSelect}
                   className="custom-select-val appearance-none bg-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3   focus:outline-none focus:border-orange-500"
                 >
-                  {genres.map((genre) => (
+                  {genres?.map((genre) => (
                     <option key={genre.id} value={genre.id}>
                       {genre.title}
                     </option>
                   ))}
                 </select>
               </div>
-
               <div className="flex justify-end">
                 <button
                   className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
-                  onClick={handleSubmit}
+                  onClick={handleNext}
                 >
-                  Submit
+                  Next
                 </button>
               </div>
             </form>
