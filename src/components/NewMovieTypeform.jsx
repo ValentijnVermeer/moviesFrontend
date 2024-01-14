@@ -142,11 +142,69 @@ const NewMovieTypeform = () => {
     );
   };
 
+  const movieProps = {
+    title,
+    year,
+    description,
+    poster,
+    big_poster,
+    length_minutes,
+    age_rating,
+    handleNext,
+    setTitle,
+    setYear,
+    setDescription,
+    setPoster,
+    setBigPoster,
+    setLenghtMinutes,
+    setAgeRating,
+    genres,
+    setGenres,
+    selectedGenres,
+    setSelectedGenres,
+    handleGenreSelect
+
+  }
+
+  const directorProps = {
+    directorFirstName,
+    directorLastName,
+    directorPhoto,
+    directorDay,
+    directorMonth,
+    directorYear,
+    setDirectorFirstName,
+    setDirectorLastName,
+    setDirectorPhoto,
+    setDirectorDay,
+    setDirectorMonth,
+    setDirectorYear,
+    handleBack,
+    handleNext
+  }
+
+  const actorProps = {
+    actorFirstName,
+    actorLastName,
+    actorPhoto,
+    actorDay,
+    actorMonth,
+    actorYear,
+    setActorFirstName,
+    setActorLastName,
+    setActorPhoto,
+    setActorDay,
+    setActorMonth,
+    setActorYear,
+    handleBack,
+    handleSubmit
+  }
+
 
   const componentMap = {
-    1: <NewMovieMovie handleNext={handleNext} />,
-    2: <NewMovieDirector handleBack={handleBack} handleNext={handleNext} />,
-    3: <NewMovieActor  handleBack={handleBack} handleSubmit={handleSubmit}/>,
+    1: <NewMovieMovie {...movieProps} />,
+    2: <NewMovieDirector {...directorProps} />,
+    3: <NewMovieActor  {...actorProps} />,
   };
 
   return (

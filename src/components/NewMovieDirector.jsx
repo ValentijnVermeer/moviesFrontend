@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewMovieDirector = ({handleNext, handleBack}) => {
-  const [genres, setGenres] = useState([]);
-  const [lengthMinutes, setLetMinutes] = useState(null);
-  const [directorDay, setDirectorDay] = useState(null);
-  const [directorMonth, setDirectorMonth] = useState(null);
-  const [directorYear, setDirectorYear] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/genres`)
-
-      .then((res) => {
-        setGenres(res.data);
-      })
-
-      .catch((error) => console.error("Error fetching genres:", error));
-  }, []);
+const NewMovieDirector = ({
+  directorFirstName,
+  directorLastName,
+  directorPhoto,
+  directorDay,
+  directorMonth,
+  directorYear,
+  setDirectorFirstName,
+  setDirectorLastName,
+  setDirectorPhoto,
+  setDirectorDay,
+  setDirectorMonth,
+  setDirectorYear,
+  handleBack,
+  handleNext,
+}) => {
 
   const handleGenreSelect = (e) => {
     console.log("something");
@@ -34,7 +33,6 @@ const NewMovieDirector = ({handleNext, handleBack}) => {
   const handleAgeRatingChange = () => {
     console.log("handleAgeRatingChange");
   };
-
 
   const handlePrevious = () => {
     console.log("handleAgeRatingChange");
@@ -184,7 +182,7 @@ const NewMovieDirector = ({handleNext, handleBack}) => {
                 />
               </div>
               <div className="flex justify-between justify-end">
-              <button
+                <button
                   className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
                   onClick={handleBack}

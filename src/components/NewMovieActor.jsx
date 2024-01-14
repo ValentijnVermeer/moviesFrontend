@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewMovieActor = ({handleBack, handleSubmit}) => {
+const NewMovieActor = ({
+  actorFirstName,
+  actorLastName,
+  actorPhoto,
+  actorDay,
+  actorMonth,
+  actorYear,
+  setActorFirstName,
+  setActorLastName,
+  setActorPhoto,
+  setActorDay,
+  setActorMonth,
+  setActorYear,
+  handleBack,
+  handleSubmit,
+}) => {
   const [genres, setGenres] = useState([]);
   const [lengthMinutes, setLetMinutes] = useState(null);
   const [directorDay, setDirectorDay] = useState(null);
@@ -15,7 +30,6 @@ const NewMovieActor = ({handleBack, handleSubmit}) => {
   const HandleCommentChange = (e) => {
     console.log("something");
   };
-
 
   const handleAgeRatingChange = () => {
     console.log("handleAgeRatingChange");
@@ -161,9 +175,9 @@ const NewMovieActor = ({handleBack, handleSubmit}) => {
                   onChange={(e) => setActorPhoto(e.target.value)}
                 />
               </div>
-            
+
               <div className="flex justify-between justify-end">
-              <button
+                <button
                   className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
                   onClick={handleBack}
