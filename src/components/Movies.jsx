@@ -13,16 +13,14 @@ const Movies = () => {
 
 	return (
 		<>
-		<div className={!loading?'hidden':'block'}>
+		<div className={!loading?'hidden':'inline'}>
 				<LoadingPage />
 				</div>
-			<div className='flex flex-col items-stretch'>
-				<div className={loading?'hidden':'inline'}>
+			<div className={loading?'hidden':'flex flex-col items-stretch'}>
 					<ParentHeaderHero setLoading={setLoading} />
 					<Genres />
 					<RecommendedMovies/>
 					<PopularMovies />
-				</div>
 			</div>
 		</>
 	);
