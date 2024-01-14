@@ -5,6 +5,7 @@ import DirectorBox from './DirectorBox';
 import like from "../assets/public/bx_like_1.png";
 import dislike from "../assets/public/bx_dislike_1.png";
 import DeletePage from './DeletePage';
+import { useNavigate } from 'react-router-dom';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const MovieDetails = () => {
   const [commentDislikes, setCommentDislikes] = useState([]);
   const [comment, setComment] = useState({"movie_id": id});
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -141,7 +143,7 @@ const handleSubmit = e => {
                     onClick={() => setDeleteConfirmation(!deleteConfirmation)}>Delete</button>
                     <button type="button" 
                     className="focus:outline-none text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-orange-900"
-                    >Update</button>
+                    onClick={() => navigate(`/movies/${id}/update`)}>Update</button>
                 </div>
                 </div>
               </div>
