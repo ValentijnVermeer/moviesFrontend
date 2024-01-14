@@ -37,6 +37,18 @@ const NewMovieMovie = () => {
       <div className="self-center flex grow basis-[0%] flex-col items-stretch my-auto max-md:max-w-full">
         <div className="text-white text-opacity-50 text-xs max-md:max-w-full">
           <div className=" p-4 rounded-lg max-w-xl mx-auto">
+          <h2
+						id='top_rated'
+						className='text-2xl font-bold tracking-tight text-white mb-4'
+					>
+						Add a new movie
+					</h2>
+          <p
+						id='top_rated'
+						className='text-xl font-bold tracking-tight text-white mb-4'
+					>
+						Please provide information about the <span className="text-orange-500">movie</span>
+					</p>
             <form>
               <div className="mb-4">
                 <label className="block text-white font-medium mb-2" for="name">
@@ -126,7 +138,7 @@ const NewMovieMovie = () => {
                 />
               </div>
 
-              <fieldset className="flex max-w-md flex-row gap-4">
+              <fieldset className="flex max-w-md flex-row gap-4 mb-4">
                 <legend className="block text-white font-medium mb-2">
                   Age restriction
                 </legend>
@@ -197,7 +209,7 @@ const NewMovieMovie = () => {
                 </div>
               </fieldset>
 
-              <div>
+              <div className="mb-4">
                 <div className="mb-2 block text-white">
                   <label
                     htmlFor="countries"

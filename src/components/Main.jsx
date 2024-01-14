@@ -4,6 +4,7 @@ import NewMovie from './NewMovie';
 import MovieDetails from './MovieDetails';
 import UpdateMovie from './UpdateMovie';
 import ArtistDetails from './ArtistDetails';
+import NewMovieTypeform from './NewMovieTypeform'
 
 const Main = () => {
 	return (
@@ -15,7 +16,7 @@ const Main = () => {
 				/>
 				<Route
 					path='/movies/new'
-					element={<NewMovie />}
+					element={<NewMovieTypeform />}
 				/>
 				<Route
 					path='/movies/:id'

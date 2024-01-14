@@ -40,6 +40,12 @@ const NewMovieDirector = () => {
         <div className="self-center flex grow basis-[0%] flex-col items-stretch my-auto max-md:max-w-full">
           <div className="text-white text-opacity-50 text-xs max-md:max-w-full">
             <div className=" p-4 rounded-lg max-w-xl mx-auto">
+            <p
+						id='top_rated'
+						className='text-xl font-bold tracking-tight text-white mb-4'
+					>
+						Please provide information about the <span className="text-orange-500">director</span>
+					</p>
               <form>
 
                 <div className="mb-4">
@@ -77,7 +83,7 @@ const NewMovieDirector = () => {
                       className="block text-white font-medium mb-2"
                     >Director Date of Birth (DD/MM/YYYY)</label>
                   </div>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row mb-4">
                   <select
                   className="appearance-none border border-orange-500 bg-zinc-900 rounded w-full py-2 px-3  focus:outline-none focus:border-orange-500"
                   id="grid-state"
