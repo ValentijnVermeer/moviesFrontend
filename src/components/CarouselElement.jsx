@@ -52,7 +52,7 @@ const CarouselElement = () => {
 	};
 
 	return (
-		<div className='w-full'>
+		<div className='w-full z--10'>
 			<button
 				onClick={goToPreviousSlide}
 				className='absolute left-12 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-20 px-4 bg-black bg-opacity-10 rounded text-2xl'
@@ -61,7 +61,7 @@ const CarouselElement = () => {
 			</button>
 			<button
 				onClick={goToNextSlide}
-				className='absolute right-10 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20  ps-5 me-1 bg-black bg-opacity-10 rounded text-2xl'
+				className='absolute right-10 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20  px-5 me-1 bg-black bg-opacity-10 rounded text-2xl'
 			>
 				▶︎
 			</button>
@@ -82,10 +82,10 @@ const CarouselElement = () => {
 								style={{ height: '40rem' }}
 							>
 								<div
-									className='absolute p-0 m-0 inset-0 bg-cover bg-center'
+									className='absolute p-0 m-0 inset-0 z-0 bg-cover bg-center'
 									style={{ backgroundImage: `url(${movie.big_poster})` }}
 								/>
-								<div className='absolute inset-0 bg-gradient-to-r from-black to-transparent'></div>
+								<div className='absolute inset-0 z-0 bg-gradient-to-r from-black to-transparent'></div>
 
 								<div className='absolute bottom-10 left-10'>
 									<h2 className='p-5 text-white text-xl font-semibold'>
