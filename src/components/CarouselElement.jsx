@@ -61,7 +61,7 @@ const CarouselElement = () => {
 			</button>
 			<button
 				onClick={goToNextSlide}
-				className='absolute right-10 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20  ps-5 me-1 bg-black bg-opacity-10 rounded text-2xl'
+				className='absolute right-10 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-20  px-5 me-1 bg-black bg-opacity-10 rounded text-2xl'
 			>
 				▶︎
 			</button>

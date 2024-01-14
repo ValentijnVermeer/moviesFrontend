@@ -3,8 +3,9 @@ import Polygon from '../assets/public/Polygon.png';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CitrusCinemaLogo from '../assets/public/CitrusCinemaLogo.png';
+import axios from 'axios';
 
 const classNames = (...classes) => {
 	return classes.filter(Boolean).join(' ');
@@ -15,6 +16,34 @@ const Header = () => {
 	const [isWideViewport, setIsWideViewport] = useState(
 		window.innerWidth >= 900
 	);
+	const [searchInput, setSearchInput] = useState('');
+	const [filteredMovies, setFilteredMovies] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies`)
+			.then((res) => {
+				filterMovies(searchInput, res.data);
+				console.log(res.data);
+			})
+			.catch((e) => console.error(e));
+	}, [searchInput]);
+
+	const handleSearchChange = (event) => {
+		const input = event.target.value;
+		setSearchInput(input);
+	};
+
+	const filterMovies = (input, movies) => {
+		if (input) {
+			const filtered = movies.filter((movie) =>
+				movie.title.toLowerCase().includes(input.toLowerCase())
+			);
+			setFilteredMovies(filtered);
+		} else {
+			setFilteredMovies([]);
+		}
+	};
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -31,7 +60,7 @@ const Header = () => {
 			case 'Home':
 				return 'left-[-0.3rem]';
 			case 'Movies':
-				return 'left-[3.9rem]';
+				return 'left-[4.5rem]';
 			default:
 				return 'left-0';
 		}
@@ -74,7 +103,7 @@ const Header = () => {
 						)}
 						{isWideViewport ? (
 							<div
-								className='flex relative text-white text-base font-semibold mx-2 nowrap cursor-pointer transition ease-in-out hover:scale-110'
+								className='flex text-white text-lg font-semibold mx-2 nowrap cursor-pointer transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Home');
 									handleNavClick('/');
@@ -84,7 +113,7 @@ const Header = () => {
 							</div>
 						) : (
 							<div
-								className='flex text-white text-base font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
+								className='flex text-white text-lg font-bold mx-2 text-5xl grow self-stretch cursor-pointer  transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Home');
 									handleNavClick('/');
@@ -95,7 +124,7 @@ const Header = () => {
 						)}
 						{isWideViewport ? (
 							<div
-								className='flex text-white text-base font-semibold mx-2 nowrap cursor-pointer transition ease-in-out hover:scale-110'
+								className='flex text-white text-lg font-semibold mx-3 nowrap cursor-pointer transition ease-in-out hover:scale-110'
 								onClick={() => {
 									setActiveSection('Movies');
 									handleNavClick('/movies/new');
@@ -117,8 +146,8 @@ const Header = () => {
 					</div>
 
 					<div>
-						<form className='max-w-sm px-4'>
-							<div className='relative'>
+						<form className='max-w-sm px-4 relative'>
+							<div className='relative z-20'>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									className='absolute top-0 bottom-0 w-6 h-6 my-auto text-white-400 left-3'
@@ -136,8 +165,29 @@ const Header = () => {
 								<input
 									type='text'
 									placeholder='Search'
-									className='w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-transparent focus:bg-black focus:border-orange-500'
+									className='w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full bg-transparent focus:bg-black focus:border-orange-600'
+									value={searchInput}
+									onChange={handleSearchChange}
 								/>
+
+								{searchInput && (
+									<div className=' absolute bg-zinc-900 z-50 top--1 rounded-tr-2xl rounded-bl-2xl max-h-96 mt-1 overflow-y-auto w-full py-2.5 search-results'>
+										{filteredMovies.map((movie) => (
+											<Link
+												key={movie.id}
+												to={`/movies/${movie.id}`}
+												className='block p-2 hover:bg-orange-600'
+											>
+												<img
+													src={movie.poster}
+													alt={movie.title}
+													className='w-11 h-11 inline-block'
+												/>
+												<span className='ml-2 text-center'>{movie.title}</span>
+											</Link>
+										))}
+									</div>
+								)}
 							</div>
 						</form>
 					</div>
@@ -150,7 +200,7 @@ const Header = () => {
 							>
 								<div>
 									{isWideViewport ? (
-										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-2 py-2 font-semibold text-white nowrap'>
+										<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent text-lg px-2 py-2 font-semibold text-white nowrap'>
 											My Profile
 											<ChevronDownIcon
 												className='-mr-1 h-5 w-5 text-white-600'
