@@ -33,34 +33,37 @@ const RecommendedMovies = () => {
 				</div>
 				<div className='my-10 mx-10 grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
 					{movies !== null && Array.isArray(movies) ? (
-						movies.map((movie) => (
-							<Link
-								key={movie.id}
-								to={`/movies/${movie.id}`}
-							>
-								<div
+						movies
+							.filter((movie) => movie.rating > 7)
+							.slice(0, 8)
+							.map((movie) => (
+								<Link
 									key={movie.id}
-									className='group relative px-16'
+									to={`/movies/${movie.id}`}
 								>
-									<div className='relative object-center w-60 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
-										<img
-											src={movie.poster}
-											className='h-full w-full object-cover object-center lg:h-full lg:w-full'
-										/>
-										<div className='absolute bottom-0 left-0 mt-4 flex justify-center text-white w-full backdrop-blur-3xl'>
-											<div>
-												<h3 className='text-xl text-white font-semibold text-center'>
-													{movie.title}
-												</h3>
-												<h3 className='text-xl text-white font-semibold text-center'>
-													⭐️ {movie.rating}
-												</h3>
+									<div
+										key={movie.id}
+										className='group relative px-16'
+									>
+										<div className='relative object-center w-60 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
+											<img
+												src={movie.poster}
+												className='h-full w-full object-cover object-center lg:h-full lg:w-full'
+											/>
+											<div className='absolute bottom-0 left-0 mt-4 flex justify-center text-white w-full backdrop-blur-3xl'>
+												<div>
+													<h3 className='text-xl text-white font-semibold text-center'>
+														{movie.title}
+													</h3>
+													<h3 className='text-xl text-white font-semibold text-center'>
+														⭐️ {movie.rating}
+													</h3>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</Link>
-						))
+								</Link>
+							))
 					) : (
 						<p>No movie found!</p>
 					)}
