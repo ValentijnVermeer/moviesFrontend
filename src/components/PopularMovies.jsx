@@ -52,6 +52,9 @@ const PopularMovies = () => {
 												<h3 className='text-xl text-white font-semibold text-center'>
 													{movie.title}
 												</h3>
+												<h3 className='text-xl text-white font-semibold text-center'>
+													⭐️ {movie.rating}
+												</h3>
 											</div>
 										</div>
 									</div>
