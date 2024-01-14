@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const CarouselElement = () => {
+const CarouselElement = ({setLoading}) => {
 	const [movies, setMovies] = useState([]);
 	const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 	const sliderRef = useRef(null);
 
 	useEffect(() => {
+		console.log('111');
 		const fetchMovies = async () => {
 			try {
 				const response = await axios.get(
@@ -22,6 +23,12 @@ const CarouselElement = () => {
 	}, []);
 
 	const indicatorWidthPercent = movies.length > 0 ? 100 / movies.length : 100;
+
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+	}, 500);
+	}, [movies])
 
 	useEffect(() => {
 		const interval = setInterval(() => {

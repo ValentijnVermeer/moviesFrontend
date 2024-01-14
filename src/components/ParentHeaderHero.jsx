@@ -1,9 +1,9 @@
 import CarouselElement from './CarouselElement';
 
-const ParentHeaderHero = () => {
+const ParentHeaderHero = ({setLoading}) => {
 	return (
 		<div>
-			<CarouselElement />
+			<CarouselElement setLoading={setLoading} />
 		</div>
 	);
 };
