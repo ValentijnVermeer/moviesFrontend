@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Polygon from '../assets/public/Polygon.png';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
@@ -18,6 +18,7 @@ const Header = () => {
 	);
 	const [searchInput, setSearchInput] = useState('');
 	const [filteredMovies, setFilteredMovies] = useState([]);
+	const searchRef = useRef(null);
 
 	useEffect(() => {
 		axios
@@ -69,9 +70,22 @@ const Header = () => {
 	const handleNavClick = (path) => {
 		navigate(path);
 	};
+
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (searchRef.current && !searchRef.current.contains(event.target)) {
+				setSearchInput('');
+				setFilteredMovies([]);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, []);
+
 	return (
-		<header className=' overflow-hidden relative flex w-full items-stretch w-full'>
-			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-8 w-full'>
+		<header className=' overflow-visible sticky top-0 flex w-full items-stretch w-full z-50 relative'>
+			<div className='relative bg-black flex w-full flex-col justify-center items-center px-4 py-4 w-full'>
 				<div className='flex w-full items-start justify-between gap-5 px-6'>
 					{isWideViewport ? (
 						<div className='flex text-xl pt-2 text-base font-medium leading-10 self-stretch grow whitespace-nowrap text-left'>
@@ -146,8 +160,11 @@ const Header = () => {
 					</div>
 
 					<div>
-						<form className='max-w-sm px-4 relative'>
-							<div className='relative z-20'>
+						<form
+							ref={searchRef}
+							className='max-w-sm px-4 relative z-50'
+						>
+							<div className='relative z-50 '>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									className='absolute top-0 bottom-0 w-6 h-6 my-auto text-white-400 left-3'
@@ -171,7 +188,7 @@ const Header = () => {
 								/>
 
 								{searchInput && (
-									<div className=' absolute bg-zinc-900 z-50 top--1 rounded-tr-2xl rounded-bl-2xl max-h-96 mt-1 overflow-y-auto w-full py-2.5 search-results'>
+									<div className=' absolute bg-zinc-900 z-[100] top--1 rounded-tr-2xl rounded-bl-2xl max-h-96 mt-1 overflow-y-auto w-full py-2.5 search-results'>
 										{filteredMovies.map((movie) => (
 											<Link
 												key={movie.id}
