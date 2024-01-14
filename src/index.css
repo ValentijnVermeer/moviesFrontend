@@ -28,3 +28,6 @@ button:hover {
 	position: absolute;
 	z-index: 1000;
 }
+.car-button {
+	border: none;
+}

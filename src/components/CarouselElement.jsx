@@ -55,14 +55,14 @@ const CarouselElement = () => {
 		<div className='w-full z--10'>
 			<button
 				onClick={goToPreviousSlide}
-				className='absolute left-8 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-5 px-3 bg-black bg-opacity-5 text-2xl h-4/6 mt-1 ms-5'
+				className='absolute left-8 top-1/4 transform -translate-y-1/4 -translate-x-full z-10 py-5 px-3 bg-black bg-opacity-5 text-2xl h-4/6 mt-1 ms-5 car-button'
 			>
 				◀︎
 			</button>
 
 			<button
 				onClick={goToNextSlide}
-				className='absolute right-8 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-5  px-3 mt-1 me-5 bg-black bg-opacity-5 text-2xl h-4/6'
+				className='absolute right-8 top-1/4 transform -translate-y-1/4 translate-x-full z-10 font-bold text-white py-5  px-3 mt-1 me-5 bg-black bg-opacity-5 text-2xl h-4/6 car-button'
 			>
 				▶︎
 			</button>
