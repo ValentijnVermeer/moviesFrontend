@@ -10,14 +10,10 @@ const PopularMovies = () => {
 		axios
 			.get(`${import.meta.env.VITE_SERVER_BASE_URL}/api/movies/popular`)
 			.then((res) => {
-				const shuffledMovies = shuffleArray(res.data).slice(0, 8);
-				setMovies(shuffledMovies);
+				setMovies(res.data);
 			})
 			.catch((e) => console.error(e));
 	}, []);
-	const shuffleArray = (array) => {
-		return array.sort(() => Math.random() - 0.5);
-	};
 
 	return (
 		<div className='bg-zinc-950'>
@@ -55,9 +51,6 @@ const PopularMovies = () => {
 											<div>
 												<h3 className='text-xl text-white font-semibold text-center'>
 													{movie.title}
-												</h3>
-												<h3 className='text-xl text-white font-semibold text-center'>
-													⭐️ {movie.rating}
 												</h3>
 											</div>
 										</div>

@@ -8,7 +8,6 @@ const Genres = () => {
 	const [genres, setGenres] = useState([]);
 	const [movies, setMovies] = useState([]);
 	const [selectedGenreId, setSelectedGenreId] = useState(null);
-	const [activeButton, setActiveButton] = useState(null);
 	useEffect(() => {
 		const fetchGenres = async () => {
 			try {
@@ -21,12 +20,6 @@ const Genres = () => {
 			}
 		};
 		fetchGenres();
-		const resetActiveButton = () => setActiveButton(null);
-		document.addEventListener('click', resetActiveButton);
-
-		return () => {
-			document.removeEventListener('click', resetActiveButton);
-		};
 	}, []);
 
 	useEffect(() => {
@@ -48,26 +41,16 @@ const Genres = () => {
 		fetchMoviesByGenre();
 	}, [selectedGenreId]);
 
-	const handleButtonClick = (genreId) => {
-		setSelectedGenreId(genreId);
-		setActiveButton(genreId);
-	};
-
 	return (
 		<div className='px-3 py-3 sm:px-3 sm:py-5 bg-zinc-950 mt-3'>
 			<div className=' flex w-full flex-col py-2 max-md:max-w-full'>
 				<ButtonGroup className='items-start flex justify-between gap-5 px-5 max-md:max-w-full flex-wrap justify-evenly items-center'>
 					{genres.map((genre) => {
-						const isActive = activeButton === genre.id;
-						const buttonClass = isActive ? 'bg-orange-600' : 'bg-zinc-900';
 						return (
 							<Button
 								key={genre.id}
-								onClick={(e) => {
-									e.stopPropagation();
-									handleButtonClick(genre.id);
-								}}
-								className={`text-white text-sm leading-4 whitespace-nowrap items-stretch ${buttonClass} self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5 hover:bg-orange-600`}
+								onClick={() => setSelectedGenreId(genre.id)}
+								className='text-white text-sm leading-4 whitespace-nowrap items-stretch bg-zinc-900 self-stretch grow justify-center px-8 py-2.5 rounded-[500px] max-md:px-5 hover:bg-orange-600'
 							>
 								{genre.title}
 							</Button>
@@ -96,9 +79,6 @@ const Genres = () => {
 											<div>
 												<h3 className='text-xl text-white font-semibold text-center'>
 													{movie.title}
-												</h3>
-												<h3 className='text-xl text-white font-semibold text-center'>
-													⭐️ {movie.rating}
 												</h3>
 											</div>
 										</div>
