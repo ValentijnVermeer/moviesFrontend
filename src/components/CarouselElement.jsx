@@ -23,11 +23,12 @@ const CarouselElement = ({setLoading}) => {
 	}, []);
 
 	const indicatorWidthPercent = movies.length > 0 ? 100 / movies.length : 100;
-
 	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-	}, 500);
+		if(movies.length > 0){
+			setTimeout(() => {
+				setLoading(false);
+		}, 600);
+		}
 	}, [movies])
 
 	useEffect(() => {
